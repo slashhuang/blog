@@ -5,7 +5,7 @@
 ## [1.webpack编译流程漫谈](https://github.com/slashhuang/blog/issues/1) 
 ## [2.Angular2下的开发架构初探](https://github.com/slashhuang/blog/issues/2) 
 
-
+### 个人技术分享PPT(https://github.com/slashhuang/blog/blob/master/ppt-share/index.md)
 
 #### [16年8月前的博客>](http://slashhuang.github.io/)
  
