@@ -5,7 +5,11 @@
 ## [1.webpack编译流程漫谈](https://github.com/slashhuang/blog/issues/1) 
 ## [2.Angular2下的开发架构初探](https://github.com/slashhuang/blog/issues/2) 
 
-### 个人技术分享PPT(https://github.com/slashhuang/blog/blob/master/ppt-share/index.md)
+### 技术分享PPT列表
+
+## [1.redux技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/ppt-for-redux.key?raw=true)
+
+## [2.webpack+gulp4自动化技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/webpack-babel-gulp.key?raw=true)
 
 #### [16年8月前的博客>](http://slashhuang.github.io/)
  
