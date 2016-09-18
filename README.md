@@ -9,8 +9,8 @@
 
 #### [1.redux技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/ppt-for-redux.key?raw=true)
 
-### [2.webpack+gulp4自动化技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/webpack-babel-gulp.key?raw=true)
+#### [2.webpack+gulp4自动化技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/webpack-babel-gulp.key?raw=true)
 
-#### [16年8月前的博客>](http://slashhuang.github.io/)
+##### [16年8月前的博客>](http://slashhuang.github.io/)
  
 
