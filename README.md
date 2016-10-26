@@ -5,6 +5,7 @@
 #### [1.webpack编译流程漫谈](https://github.com/slashhuang/blog/issues/1) 
 #### [2.Angular2下的开发架构初探](https://github.com/slashhuang/blog/issues/2) 
 #### [3.Angular2.0正式版api使用漫谈](https://github.com/slashhuang/ng2-tutorial/issues/1) 
+#### [4.前端工程化下的组件设计原则漫谈](https://github.com/slashhuang/ng2-tutorial/issues/5) 
 
 ### 技术分享PPT列表
 
