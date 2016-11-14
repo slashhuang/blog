@@ -5,6 +5,8 @@
 #### [1.webpack编译流程漫谈](https://github.com/slashhuang/blog/issues/1) 
 #### [2.Angular2下的开发架构初探](https://github.com/slashhuang/blog/issues/2) 
 #### [3.前端工程化下的组件设计原则漫谈](https://github.com/slashhuang/blog/issues/5) 
+#### [4词法作用域与函数式编程语言](https://github.com/slashhuang/blog/issues/8) 
+
 
 ### 技术分享PPT列表
 
