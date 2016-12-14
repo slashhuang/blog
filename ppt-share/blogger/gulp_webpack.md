@@ -14,3 +14,7 @@
 > 比较好的形式是类似gulp-babel/gulp-coffee这类本身具备很好的功能，通过gulp插件体系就可以使得工作流更加顺畅。
 
 
+## 参考资料
+[buffer](https://github.com/slashhuang/node/blob/master/doc/api/buffer.md)
+[gulp](https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/guidelines.md)
+
