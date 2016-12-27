@@ -50,8 +50,55 @@
 ### 1. 语法层面(syntax)
 ####  1. 选择更合适的程序控制流语法
 ``` js
-    async + await
+    async (ctx,next)=>{
+        await next();
+        // 做你的工作
+    }
 ```
+> 程序控制流上面采用了async+await语法来生成Promise形式的程序控制流。
+> 这种形式的控制流让整个Koa框架中间件的访问呈现出```自上而下的中间件流 + 自下而上的response数据流```的形式。
+> 官方对控制流的gif描述要比我形象许多，我这里贴下官方的图片描述。
+![koa官方中间件控制流](https://github.com/koajs/koa/blob/v2.x/docs/middleware.gif?raw=true)
+
+> 在async和await的内部技术实现上是采用的Promise的形式，所以```return Promise```可以直接挂到```await```后面
+```js
+      var p = await new Promise(resolve => {
+                    setTimeout(() => {
+                      resolve(10);
+                }, 2000);
+     console.log(p) //2秒后打印10
+```
+> koa2在实现这种中间件调用方式上是通过next()来延续的，在技术实现上和redux的中间件的实现方式基本一致。
+> 中间件模块编写直接采用的是```koa-compose```，我们直接看koa-compose的代码，基本就是个dispatch的递归调用，实现上还是蛮简单的。
+```javascript
+    // return Promise
+   function (context, next) {
+    // last called middleware #
+    let index = -1
+    return dispatch(0)
+    function dispatch (i) {
+      if (i <= index) return Promise.reject(new Error('next() called multiple times'))
+      index = i
+      let fn = middleware[i]
+      if (i === middleware.length) fn = next
+      if (!fn) return Promise.resolve()
+      try {
+        return Promise.resolve(fn(context, function next () {
+          return dispatch(i + 1)
+        }))
+      } catch (err) {
+        return Promise.reject(err)
+      }
+    }
+  }
+```
+> 由于koa-compose的这种写法形式，所以在调用next()后，会直接执行dispatch(index)进行后续流程，
+> 这个过程导致了函数的不断嵌套，同时async+await编译后是根据context._send进行switch调用的，
+> 因此才能造成上面形式自上而下和自上而下的数据流。
+
+
+
+
 ####  2. 选择对开发者更友好的getter,setter
 ``` js
     get  + set
@@ -80,6 +127,10 @@
       .getter('headerSent')
       .getter('writable');
 ```
+
+##### 参考资料
+1. [get set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set)
+2. [async await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 
 
 
