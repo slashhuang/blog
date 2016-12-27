@@ -23,7 +23,7 @@
 
 > 下面我从Koa的设计理念、数据结构、中间件组成方式、代码组织的角度来展开对Koa的讨论
 
-### Koa的设计理念
+## Koa的设计理念
 
 > Koa是一个轻量级的、极富表现力的http开发框架。
 > 一个request会通过Koa的中间件栈，来动态处理最后的response。
@@ -35,7 +35,7 @@
 > koa的设计理念，让这个框架很容易发展庞大的中间件生态圈和保持高可维护性。
 > 这是top-level的事情。
 
-### Koa的中间件编写形式
+## Koa的中间件编写形式
 > 一个简单的Koa2中间件通过下面几行代码就可以实现，我们就基于下面的代码展开讨论
 ```js
     app.use(async (ctx, next) => {
@@ -47,9 +47,38 @@
       }
     });
 ```
-1. 语法
+### 1. 语法层面(syntax)
+####  1. 选择更合适的程序控制流语法
 ``` js
     async + await
+```
+####  2. 选择对开发者更友好的getter,setter
+``` js
+    get  + set
+```
+
+### 2. 对开发者不可见的response+request属性代理层面(delegate)
+
+###  1. delegates模块
+``` js
+   //以Response delegation为例
+    delegate(proto, 'response')
+      .method('attachment')
+      .method('redirect')
+      .method('remove')
+      .method('vary')
+      .method('set')
+      .method('append')
+      .method('flushHeaders')
+      .access('status')
+      .access('message')
+      .access('body')
+      .access('length')
+      .access('type')
+      .access('lastModified')
+      .access('etag')
+      .getter('headerSent')
+      .getter('writable');
 ```
 
 
