@@ -68,8 +68,10 @@
                 }, 2000);
      console.log(p) //2秒后打印10
 ```
-> koa2在实现这种中间件调用方式上是通过next()来延续的，在技术实现上和redux的中间件的实现方式基本一致。
-> 中间件模块编写直接采用的是```koa-compose```，我们直接看koa-compose的代码，基本就是个dispatch的递归调用，实现上还是蛮简单的。
+> koa2在实现这种中间件调用方式上是通过next()来延续的，
+> 虽然redux和Koa2都是执行栈指针在中间件数组不断偏移的过程，但是在技术实现上Koa2结合Promise后采用的是递归调用的形式。
+> Koa2中间件模块编写直接采用的是```koa-compose```，
+> 我在这边直接贴下koa-compose的核心代码。
 ```javascript
     // return Promise
    function (context, next) {
@@ -79,10 +81,11 @@
     function dispatch (i) {
       if (i <= index) return Promise.reject(new Error('next() called multiple times'))
       index = i
-      let fn = middleware[i]
+      let fn = middleware[i] //调用下一个middleware
       if (i === middleware.length) fn = next
       if (!fn) return Promise.resolve()
       try {
+        //在middleware中传递next方法
         return Promise.resolve(fn(context, function next () {
           return dispatch(i + 1)
         }))
@@ -92,9 +95,12 @@
     }
   }
 ```
-> 由于koa-compose的这种写法形式，所以在调用next()后，会直接执行dispatch(index)进行后续流程，
-> 这个过程导致了函数的不断嵌套，同时async+await编译后是根据context._send进行switch调用的，
-> 因此才能造成上面形式自上而下和自上而下的数据流。
+> 可以看到Koa-compose基本就是个中间件dispatch的递归调用，实现上还是蛮简单的。
+> 在Koa中间件编写上面，看我上面的注释可以看到middlewareFunction的第二个参数(也就是next)，
+> 会调取下一轮中间件的执行dispatch(index)来进行后续流程。
+> 这个过程导致了中间件函数的不断嵌套，得以使得所有的中间件能够自上而下被执行。
+> 同时由于中间件async+await的写法编译后，返回的是根据context._send的switch调用，
+> 所以在调用await next()后的代码会自下而上执行。
 
 
 ####  2. 选择对开发者更友好的getter,setter
