@@ -13,7 +13,7 @@
 
 > 令我感到欣喜的是在阅读Koa2的源码的过程中，我感受到的不仅是代码的简短，更是Koa团队执笔的清晰思路。
 
-> 下面就写下个人对koa2框架的整体理解。
+> 下面就写下个人对koa2框架中属性代理和中间件语法的理解。
 
 ## 正文
 > 首先，使用下面的几行代码，就可以轻易的搭建一个nodeJS的http服务器。
@@ -28,21 +28,28 @@
 > 我们可以看到，一个经典的web应用模型最重要的两块数据就是request和response。
 > 编写一个web框架最先要解决的就是对request和response的处理和设计规范了。
 
-> 下面我从Koa的设计理念、数据结构、中间件组成方式、代码组织的角度来展开对Koa的讨论
+> 下面我从Koa的设计理念、数据结构、中间件组成方式的角度来展开对Koa的讨论
 
 ## Koa的设计理念
 
 > Koa是一个轻量级的、极富表现力的http开发框架。
+
 > 一个request会通过Koa的中间件栈，来动态处理最后的response。
+
 > 同时，Koa2采用async和await的语法来增强中间件的表现力。
+
 > 而Koa本身仅仅是定制了中间件的编写规范，而不内置任何中间件。
 
 > 做过大型开源项目或者多人协作项目的同学应该都很有体会，
+
 > 好的代码规范和设计方式的制定往往比写出好的代码更重要和更可控。
+
 > koa的设计理念，让这个框架很容易发展庞大的中间件生态圈和保持高可维护性。
+
 > 这是top-level的事情。
 
 ## Koa的中间件编写形式
+
 > 一个简单的Koa2中间件通过下面几行代码就可以实现，我们就基于下面的代码展开讨论
 ```js
     app.use(async (ctx, next) => {
@@ -123,7 +130,7 @@
 > 所以在调用await next()后的代码会自下而上执行。
 
 
-####  2. 选择对开发者更友好的getter,setter
+####  2. 属性代理层面之getter,setter,delegates
 ``` js
     /**
      * //文件位置 koa/lib/response.js
@@ -156,29 +163,35 @@
 
 > 总体而言，这个设计思想还是很犀利的，而且对开发者足够友好。
 
-### 2. 对开发者不可见的response+request属性代理层面(delegate)
+> 为了方便大家熟悉koa的属性代理，我把源码中属性代理的一部分，根据method/access/getter分类贴在了下面。
 
 ###  1. delegates模块
 ``` js
-   //以Response delegation为例
+   /**
+    * 请求处理的代理列表
+    * Response delegation
+    */
     delegate(proto, 'response')
-      .method('attachment')
-      .method('redirect')
-      .method('remove')
-      .method('vary')
-      .method('set')
-      .method('append')
-      .method('flushHeaders')
-      .access('status')
-      .access('message')
-      .access('body')
-      .access('length')
-      .access('type')
-      .access('lastModified')
-      .access('etag')
-      .getter('headerSent')
-      .getter('writable');
+    method:[ 'attachment' , 'redirect' , 'remove' ,'vary' ,'set' ,'append' ,'flushHeaders' ],
+    access:['status' , 'message' , 'body' ,'length' ,'type','lastModified' ,'etag' ],
+    getter:[  'headerSent' ,'writable' ]
+   /**
+    * 请求的代理列表[Incoming message]
+    * Request delegation
+    */
+    delegate(proto, 'request')
+    method:[  'acceptsLanguages' , 'acceptsEncodings' , 'acceptsCharsets' ,'accepts' ,'get' ,'is'  ],
+    access:[ 'querystring' ,'idempotent' , 'socket' ,'search' ,'method' ,'query' ,'path' ,'url' ],
+    getter:[  'origin' , 'href' ,'subdomains' ,'protocol' ,'host' ,'hostname'
+            'header' ,'headers' ,'secure' ,'stale' ,'fresh' ,'ips' ,'ip' ]
+
 ```
+
+> 文末，安利下最近在公司写的一个koa2的boilerplate提供给大家作为快速开发的模板项目。
+> 这个项目是个比较典型的MVC(middleware+ view + controller)项目模板。
+> 它集成了日志系统、router、promise network、error handling和不同的开发环境配置
+> 相信应该会对大家在Koa2开发上有所裨益。
+[原文地址参见我的github博客](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
 
 ##### 参考资料
 1. [get set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set)
