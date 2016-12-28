@@ -56,11 +56,15 @@
     }
 ```
 > 程序控制流上面采用了async+await语法来生成Promise形式的程序控制流。
+
 > 这种形式的控制流让整个Koa框架中间件的访问呈现出```自上而下的中间件流 + 自下而上的response数据流```的形式。
+
 > 官方对控制流的gif描述要比我形象许多，我这里贴下官方的图片描述。
+
 ![koa官方中间件控制流](https://github.com/koajs/koa/blob/v2.x/docs/middleware.gif?raw=true)
 
 > 在async和await的内部技术实现上是采用的Promise的形式，所以```return Promise```可以直接挂到```await```后面
+
 ```js
       var p = await new Promise(resolve => {
                     setTimeout(() => {
@@ -69,9 +73,13 @@
      console.log(p) //2秒后打印10
 ```
 > koa2在实现这种中间件调用方式上是通过next()来延续的，
+
 > 虽然redux和Koa2都是执行栈指针在中间件数组不断偏移的过程，但是在技术实现上Koa2结合Promise后采用的是递归调用的形式。
+
 > Koa2中间件模块编写直接采用的是```koa-compose```，
+
 > 我在这边直接贴下koa-compose的核心代码。
+
 ```javascript
     // return Promise
    function (context, next) {
