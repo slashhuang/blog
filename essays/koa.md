@@ -15,7 +15,8 @@
 
 > 下面就写下个人对koa2框架中属性代理和中间件语法的理解。
 
-## 正文
+## 一个简单的http服务器
+
 > 首先，使用下面的几行代码，就可以轻易的搭建一个nodeJS的http服务器。
 ```js
     const http = require('http');
@@ -188,9 +189,13 @@
 ```
 
 > 文末，安利下最近在公司写的一个koa2的boilerplate提供给大家作为快速开发的模板项目。
+
 > 这个项目是个比较典型的MVC(middleware+ view + controller)项目模板。
+
 > 它集成了日志系统、router、promise network、error handling和不同的开发环境配置
+
 > 相信应该会对大家在Koa2开发上有所裨益。
+
 [原文地址参见我的github博客](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
 
 ##### 参考资料
