@@ -96,28 +96,50 @@
   }
 ```
 > 可以看到Koa-compose基本就是个中间件dispatch的递归调用，实现上还是蛮简单的。
+
 > 在Koa中间件编写上面，看我上面的注释可以看到middlewareFunction的第二个参数(也就是next)，
+
 > 会调取下一轮中间件的执行dispatch(index)来进行后续流程。
+
 > 这个过程导致了中间件函数的不断嵌套，得以使得所有的中间件能够自上而下被执行。
+
 > 同时由于中间件async+await的写法编译后，返回的是根据context._send的switch调用，
+
 > 所以在调用await next()后的代码会自下而上执行。
 
 
 ####  2. 选择对开发者更友好的getter,setter
 ``` js
-    //Get response status code.
-    get status() {
-        return this.res.statusCode;
-    }
+    /**
+     * //文件位置 koa/lib/response.js
+     * //代码作用 set response status code.
+     */
+    set status(code) {
+        assert('number' == typeof code, 'status code must be a number');
+        assert(statuses[code], `invalid status code: ${code}`);
+        assert(!this.res.headersSent, 'headers have already been sent');
+        this._explicitStatus = true;
+        this.res.statusCode = code;
+        this.res.statusMessage = statuses[code];
+        if (this.body && statuses.empty[code]) this.body = null;
+    },
+    /**
+     * //文件位置 koa/lib/context.js
+     * //代码作用 Response delegation
+     */
     var delegate =require('delegates');
     delegate(ctx, 'response')
         .access('status');
 ```
 > 如上的示例代码是Koa2中属性代理的一个经典模式，
+
 > 这种模式一方面采用setter和getter的形式(好处参见Vue.js的vm属性digest的设计),
+
 > 简化了开发者同步设置statusCode等的工作。
+
 > 同时将属性配置代理到ctx对象上面,让开发者采用```ctx.status=500```即可完成response的设置。
-> 总体而言，这个设计思想还是很犀利的，而且对开发者足够友好
+
+> 总体而言，这个设计思想还是很犀利的，而且对开发者足够友好。
 
 ### 2. 对开发者不可见的response+request属性代理层面(delegate)
 
