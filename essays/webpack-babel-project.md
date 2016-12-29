@@ -8,18 +8,20 @@
 
 > 框架引入之react、vue,构建相关之webpack、roollup、gulp,语法相关之ES6/7、typescript等方面。
 
-> 这篇文章，我将主要针对webpack+babel来集中讨论H5/PC项目的构建。
+> 由于对于现在的前端开发而言，每个讨论点都可以讲非常多的东西。
 
-> 下面是本文的论述小标题列表。
+> 为了提高文章的质量，我就主要针对构建相关中的babel来展开讨论。
 
-- babel插件及polyfill引入机制
-- babel与PC痛点之IE8
-- webpack给前端项目提供的便利点分析及插件体系
-- typescript和ES6、7引入的利弊
+> 本文关于babel的论述主要分为下面几块:
 
+1. babel编译体系介绍
+2. babel插件及预设
+3. babel-register在gulp和node项目中的使用
+4. babel的polyfill引入机制
+5. 在babel升级到6时，如何兼容babel5针对ES6/7的编译方式
+6. 兼容babel6到IE8
 
-# babel插件及polyfill引入机制
-### 1. babel编译体系介绍
+## 1.babel编译体系介绍 
 
 1.核心包
 ```js
@@ -46,7 +48,7 @@
 > 很多github上开源的babel插件也是基于这个时机个性化自己的一些转换需求和babel配置的。
 > 接下来我们看下babel的presets这块
 
-2. babel presets(预置插件方式)
+## 2.babel插件及预设presets(预置插件方式)
 
 > Presets是一个plugin数组来描述对AST进行transform的转换关系。
 
@@ -58,12 +60,15 @@
 
 > 所以，基本上可以跳过presets来看plugins
 
-3. babel plugins(插件)
+## 3.babel-register在gulp和node项目中的使用
 
 > 开文先抛观点: 插件是babel的核心!!
 
 > 一个基本的babel插件可以分为transform插件和syntax插件。
 
+
+
+## 4.babel的polyfill引入机制
 
 #### babel总结
 
@@ -71,8 +76,10 @@
 
 > 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
 
+## 5.在babel升级到6时，如何兼容babel5针对ES6/7的编译方式
 
-# babel与PC痛点IE8
+
+## 6.兼容babel6到IE8
 
 > 参考我写的配置
 [babel-preset-es2015-ie8](https://github.com/slashhuang/babel-preset-es2015-ie8/tree/master)
