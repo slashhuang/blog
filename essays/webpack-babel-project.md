@@ -1,17 +1,23 @@
 # 前言
 
-> 借着创建node+fe新项目的机会，
-
-> 我整理了下之前采用```babel6+webpack```构建PC站和H5项目的经验。
-
 > 说实在的，前端发展到现在，不用个```(webpack|babel|nodeJS|typescript)```(可选)，
 
 > 你都不好意思说这个项目具备工程化和多人协作的能力。
 
-> 好吧，闲话不多说，下面开始前端项目的构建总结。
+> 关于前端工程化的问题，业界的主流讨论点还是集中在组件规范之web components，
 
-#
+> 框架引入之react、vue,构建相关之webpack、roollup,语法相关之ES6/7、typescript等方面。
 
+> 而这篇文章主要集中讨论的点在于H5/PC项目构建之webpack+babel。
+
+> 我分下面几个点来展开论述。
+
+- babel之IE8
+- webpack给前端项目提供的便利点分析及插件体系
+- typescript和ES6、7引入的利弊
+
+
+# babel之IE8
 
 > 关于IE8的兼容性问题，一直都是前端开发者的痛点。
 
