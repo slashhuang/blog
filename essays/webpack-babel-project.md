@@ -60,19 +60,16 @@
 
 > 所以，基本上可以跳过presets来看plugins
 
-## 3.babel-register在gulp和node项目中的使用
-
 > 开文先抛观点: 插件是babel的核心!!
 
 > 一个基本的babel插件可以分为transform插件和syntax插件。
 
+## 3.babel-register在gulp和node项目中的使用
+
+
 
 
 ## 4.babel的polyfill引入机制
-
-#### babel总结
-
-> 关于babel更多的知识，直接参考babel的handbook基本可以handle了。
 
 > 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
 
@@ -91,5 +88,12 @@
 > 主要的问题原因在于ES6、commonJS在babel6导出的时候会出现一个default关键词,
 
 > 关于ES5方法及类似Promise,Array.includes等方法，通过```shimsham.js+core-js```基本handle了，
+
+
+#### babel总结
+
+> 关于babel更多的知识，直接参考babel的handbook基本可以handle了。
+
+
 
 > 所以本篇文章，我将主要针对babel6和webpack构建前端项目做个总结和分析
