@@ -61,6 +61,9 @@
 
 # babel与PC痛点IE8
 
+> 参考我写的配置
+[babel-preset-es2015-ie8](https://github.com/slashhuang/babel-preset-es2015-ie8/tree/master)
+
 > 关于IE8的兼容性问题，一直都是前端开发者的痛点。
 
 > 之前曾经看到有阿里的同学在github上曾经发表对于babel6各种不支持IE8的一些苦恼及解决方案,
