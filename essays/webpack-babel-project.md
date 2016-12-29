@@ -12,7 +12,8 @@
 
 > 我分下面几个点来展开论述。
 
-- babel之IE8
+- babel插件及polyfill引入机制
+- babel与PC痛点IE8
 - webpack给前端项目提供的便利点分析及插件体系
 - typescript和ES6、7引入的利弊
 
