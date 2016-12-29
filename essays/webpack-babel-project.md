@@ -19,19 +19,44 @@
 
 
 # babel插件及polyfill引入机制
-### 1.babel编译体系介绍
+### 1. babel编译体系介绍
 
-- 核心包
+1.核心包
+```js
+     //主入口:集成babylon babel-traverse babel-generator暴露babel.transform方法来编译source code
+     babel-core
+     //语法字符串解析parser
+     babylon
+     //结合plugins和presets(plugins)遍历AST语法树
+     babel-traverse
+     //生成最后的编译字符串
+     babel-generator
 ```
- babel-core
- babylon
- babel-traverse
- babel-generator
-
+> 整体的babel编译大概按照如下流程进行
+```js
+    input string
+    -> babylon parser
+    -> AST
+    -> babel-traverse transformer[s]
+    -> AST
+    -> babel-generator
+    -> output string
 ```
+> 可以看到babel插件在生成AST后，会经历一个plugin和presets的转换才会到output string，
+> 很多github上开源的babel插件也是基于这个时机个性化自己的一些转换需求的。
+> 接下来我们看下babel的presets这块
 
+2. babel presets(预置插件数组)
+> 在babel6之后，默认的transformer都被移除了，
+> Presets是一个plugin数组来描述对AST进行transform的转换关系。
+> babel官方本身是维护了一些比较常用的```babel-preset-es2015```等预设plugins。
 
->
+3. babel plugins(插件)
+> 插件是babel的核心！
+> 插件基本可以分为transform插件和syntax插件。
+
+> 关于babel更多的知识，直接参考babel的handbook基本可以handle了。
+> 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
 
 
 # babel与PC痛点IE8
