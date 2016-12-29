@@ -10,4 +10,6 @@
 
 > 主要的问题原因在于ES6、commonJS在babel6导出的时候会出现一个default关键词,
 
->其余的ES5方法问题，大部分通过shimsham基本handle了，所以
+> 关于ES5方法及类似Promise,Array.includes等方法，通过```shimsham.js+core-js```基本handle了，
+
+> 所以本篇文章，我将主要针对babel6和webpack构建前端项目做个总结和分析。
