@@ -43,19 +43,32 @@
     -> output string
 ```
 > 可以看到babel插件在生成AST后，会经历一个plugin和presets的转换才会到output string，
-> 很多github上开源的babel插件也是基于这个时机个性化自己的一些转换需求的。
+> 很多github上开源的babel插件也是基于这个时机个性化自己的一些转换需求和babel配置的。
 > 接下来我们看下babel的presets这块
 
-2. babel presets(预置插件数组)
-> 在babel6之后，默认的transformer都被移除了，
+2. babel presets(预置插件方式)
+
 > Presets是一个plugin数组来描述对AST进行transform的转换关系。
+
+> 在babel6以后的版本，默认内置的transformer都被移除了。
+
 > babel官方本身是维护了一些比较常用的```babel-preset-es2015```等预设plugins。
 
+> 直观的解释Presets的话，可以认为Presets是plugins的一个namespace，引入Presets即相当于引入了plugins.
+
+> 所以，基本上可以跳过presets来看plugins
+
 3. babel plugins(插件)
-> 插件是babel的核心！
-> 插件基本可以分为transform插件和syntax插件。
+
+> 开文先抛观点: 插件是babel的核心!!
+
+> 一个基本的babel插件可以分为transform插件和syntax插件。
+
+
+#### babel总结
 
 > 关于babel更多的知识，直接参考babel的handbook基本可以handle了。
+
 > 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
 
 
