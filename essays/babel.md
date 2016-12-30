@@ -39,14 +39,14 @@
     input string
     -> babylon parser
     -> AST
-    -> babel-traverse transformer[s]
+    -> babel-traverse transformer[s] //结合plugins和presets(plugins)遍历AST语法树
     -> AST
     -> babel-generator
     -> output string
 ```
 > 可以看到babel插件在生成AST后，会经历一个plugin和presets的转换才会到output string，
 > 很多github上开源的babel插件也是基于这个时机个性化自己的一些转换需求和babel配置的。
-> 接下来我们看下babel的presets这块
+> 接下来我们看下babel的presets和plugins这块
 
 ## 2.babel插件及预设presets(预置插件方式)
 
@@ -58,9 +58,9 @@
 
 > 直观的解释Presets的话，可以认为Presets是plugins的一个namespace，引入Presets即相当于引入了plugins,因此可以基本认为插件是babel的核心!!
 
-> 插件的编写是件不那么复杂的事情，由于```babylon```已经预先解析源代码为AST树了，
+> 由于```babylon```阶段已经将源代码预先为AST树了，
 
-> 所以大部分的插件工作只需要遵循tree数据结构的那一套即可逻辑，即可完成AST节点的个性化。
+> 所以，大部分的插件工作只需要遵循AST tree数据结构的那一套逻辑，即可完成AST节点的个性化。
 
 > 具体的实践可以直接查看官方的[plugin编写文档](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
 
@@ -70,16 +70,16 @@
 
 > 通过修改require function，对所有的通过require引入的代码先经过babel编译一遍，再给到runtime执行。
 
-> 程序设计思想上，很有创新性，在nodejs环境下渐渐被各家技术门派所采用了。
+> 由于开发者更喜欢用ES6/7的语法来写代码，因此babel-register在nodejs环境下越来越得到各大技术宗派的喜爱。
 
-> 比如gulp4的插件编写就引入了babel-register，koa2也推崇babel-register来编译用ES6/7编写的代码。
+> 比如gulp4的插件编写就内置了babel-register，koa2也推崇采用babel-register来编译用ES6/7写成的代码。
 
 
 ## 4.babel的polyfill引入机制
 
 > babel的polyfill这块是基于core-js的，像类似Promise对象、Array.includes等ES6/7方法，都可以在core-js中找到实现。
 
-> 所以我的个人建议就是按需引入core-js的模块，来对ES6/7新增的数据对象和方法做polyfill。
+> 所以我的个人建议是按需引入core-js的模块而不是整个babel-polyfill bundle，来对ES6/7新增的数据对象和方法做polyfill。
 
 ## 5.在babel升级到6时，如何兼容babel5针对ES6/7的编译方式
 
@@ -89,30 +89,27 @@
 
 > 2. 本来babel5对export default的输出形式在babel6下会出现default关键字。
 
-> 由于以上两点的存在，导致很多基于babel5的项目升级babel6很纠结。
+> 由于以上两点的存在，导致很多基于babel5的项目升级成babel6后存在不兼容的情况。
 
-> 在了解了babel的compile system后，其实很容易解决以上的两个问题。
+> 其实，在了解了babel的compile system后，以上的两个问题是很容易解决的。
 
 > 比如babel-plugin-add-module-exports这个库就可以完美解决export default 问题。
 
-> 比如我写的[babel-preset-es2015-ie8](https://github.com/slashhuang/babel-preset-es2015-ie8/tree/master)即可解决IE8项目的集成。
+> 比如我写的[babel-preset-es2015-ie8](https://github.com/slashhuang/babel-preset-es2015-ie8/tree/master)即可顾虑关键字而解决IE8项目的集成。
 
-> 同时，对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc来babel的编译方式。
+> 最后，对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc来配置babel的编译方式。
 
 #### babel总结
 
-> 关于babel更多的知识，大家如果有兴趣的话直接参考babel的handbook。
+> babel的出现让开发者可以自由的采用ES6/7的语法来编写JS项目，极大的丰富了开发层面的JS语言特性。
+
+> babel的AST parser、polyfill、 register一起完成了babel体系对JS的完备解决方案。
+
+> 关于babel更多的知识，大家如果有兴趣的话直接参考[babel的handbook]((https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md))。
 
 
-本文首发于作者的[github blog](https://github.com/slashhuang/blog)
+最后，本文首发于作者的[github blog](https://github.com/slashhuang/blog)
 
 #### 参考资料
 [plugin-handbook](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
 [user-guide](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md)
-
-
-
-
-
-
-> 所以本篇文章，我将主要针对babel6和webpack构建前端项目做个总结和分析
