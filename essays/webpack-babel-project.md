@@ -58,6 +58,12 @@
 
 > 直观的解释Presets的话，可以认为Presets是plugins的一个namespace，引入Presets即相当于引入了plugins,因此可以基本认为插件是babel的核心!!
 
+> 插件的编写是件不那么复杂的事情，由于```babylon```已经预先解析源代码为AST树了，
+
+> 所以大部分的插件工作只需要遵循tree数据结构的那一套即可逻辑，即可完成AST节点的个性化。
+
+> 具体的实践可以直接查看官方的[plugin编写文档](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
+
 ## 3.babel-register在gulp和node项目中的使用
 
 
