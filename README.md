@@ -7,6 +7,7 @@
 #### [3.前端工程化下的组件设计原则漫谈](https://github.com/slashhuang/blog/issues/5)
 #### [4.词法作用域与函数式编程语言](https://github.com/slashhuang/blog/issues/8)
 #### [5.koa2设计思想及源码分析](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
+#### [6.babel知识体系漫谈](https://github.com/slashhuang/blog/blob/master/essays/babel.md)
 
 
 ### 技术分享PPT列表
