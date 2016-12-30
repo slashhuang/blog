@@ -21,7 +21,7 @@
 5. 在babel升级到6时，如何兼容babel5针对ES6/7的编译方式
 6. 兼容babel6到IE8
 
-## 1.babel编译体系介绍 
+## 1.babel编译体系介绍
 
 1.核心包
 ```js
@@ -56,13 +56,7 @@
 
 > babel官方本身是维护了一些比较常用的```babel-preset-es2015```等预设plugins。
 
-> 直观的解释Presets的话，可以认为Presets是plugins的一个namespace，引入Presets即相当于引入了plugins.
-
-> 所以，基本上可以跳过presets来看plugins
-
-> 开文先抛观点: 插件是babel的核心!!
-
-> 一个基本的babel插件可以分为transform插件和syntax插件。
+> 直观的解释Presets的话，可以认为Presets是plugins的一个namespace，引入Presets即相当于引入了plugins,因此可以基本认为插件是babel的核心!!
 
 ## 3.babel-register在gulp和node项目中的使用
 
@@ -93,6 +87,13 @@
 #### babel总结
 
 > 关于babel更多的知识，直接参考babel的handbook基本可以handle了。
+
+#### 参考资料
+[plugin-handbook](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
+[user-guide](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md)
+
+
+
 
 
 
