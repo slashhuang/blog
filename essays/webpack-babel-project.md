@@ -66,10 +66,13 @@
 
 ## 3.babel-register在gulp和node项目中的使用
 
-> babel-register的设计思想非常厉害，简单的来说就一点就是```require hook```,
-> 通过修改require function，对所有的通过require引入的代码先经过babel编译一遍，再给到runtime执行
-> 程序设计思想上，很有创新性！
+> babel-register的设计思想非常厉害，简单的来说就一点就是```require hook```。
 
+> 通过修改require function，对所有的通过require引入的代码先经过babel编译一遍，再给到runtime执行。
+
+> 程序设计思想上，很有创新性，在nodejs环境下渐渐被各家技术门派所采用了。
+
+> 比如gulp4的插件编写就引入了babel-register，koa2也推崇babel-register来编译用ES6/7编写的代码。
 
 
 
