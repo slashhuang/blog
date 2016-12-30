@@ -75,13 +75,20 @@
 > 比如gulp4的插件编写就引入了babel-register，koa2也推崇babel-register来编译用ES6/7编写的代码。
 
 
-
 ## 4.babel的polyfill引入机制
 
-> 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
+> babel的polyfill这块是基于core-js的，像类似Promise对象、Array.includes等ES6/7方法，都可以在core-js中找到实现。
+
+> 所以我的个人建议就是按需引入core-js的模块，来对ES6/7新增的数据对象和方法做polyfill。
 
 ## 5.在babel升级到6时，如何兼容babel5针对ES6/7的编译方式
 
+> 好吧，关于babel5 babel6确实在社区有很多吐槽,主要有如下几个让开发者不太舒服的点。
+
+> 1. 本来babel5的大锅饭模式换成了babel6的按需添加插件的形式
+
+
+> 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
 
 ## 6.兼容babel6到IE8
 
