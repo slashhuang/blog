@@ -19,7 +19,7 @@
 3. babel-register在gulp和node项目中的使用
 4. babel的polyfill引入机制
 5. 在babel升级到6时，如何兼容babel5针对ES6/7的编译方式
-6. 兼容babel6到IE8
+6. babel总结
 
 ## 1.babel编译体系介绍
 
@@ -89,28 +89,22 @@
 
 > 2. 本来babel5对export default的输出形式在babel6下会出现default关键字。
 
-> 由于以上两点的存在，导致很多基于babel5的项目需要做
+> 由于以上两点的存在，导致很多基于babel5的项目升级babel6很纠结。
 
+> 在了解了babel的compile system后，其实很容易解决以上的两个问题。
 
-> 对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc配置给babel阅读即可。
+> 比如babel-plugin-add-module-exports这个库就可以完美解决export default 问题。
 
-## 6.兼容babel6到IE8
+> 比如我写的[babel-preset-es2015-ie8](https://github.com/slashhuang/babel-preset-es2015-ie8/tree/master)即可解决IE8项目的集成。
 
-> 参考我写的配置
-[babel-preset-es2015-ie8](https://github.com/slashhuang/babel-preset-es2015-ie8/tree/master)
-
-> 关于IE8的兼容性问题，一直都是前端开发者的痛点。
-
-> 之前曾经看到有阿里的同学在github上曾经发表对于babel6各种不支持IE8的一些苦恼及解决方案,
-
-> 主要的问题原因在于ES6、commonJS在babel6导出的时候会出现一个default关键词,
-
-> 关于ES5方法及类似Promise,Array.includes等方法，通过```shimsham.js+core-js```基本handle了，
-
+> 同时，对于没有特殊要求的前端项目而言，我的建议是直接写个.babelrc来babel的编译方式。
 
 #### babel总结
 
-> 关于babel更多的知识，直接参考babel的handbook基本可以handle了。
+> 关于babel更多的知识，大家如果有兴趣的话直接参考babel的handbook。
+
+
+本文首发于作者的[github blog](https://github.com/slashhuang/blog)
 
 #### 参考资料
 [plugin-handbook](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
