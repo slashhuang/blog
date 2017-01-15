@@ -5,7 +5,6 @@
 > 本篇文章是我在公司里面分享webpack及babel配置和插件开发的一个细节版本，
 > 希望能让大家通过阅读本文，比较好的梳理webpack工具。
 
-
 # webpack的出现解决了什么问题
 
 > JavaScript自面世之后，就成为浏览器的标准脚本语言，
@@ -16,20 +15,20 @@
 
 1、script标签加载脚本 + window对象形成引用关系
 2、
-> 在上一条的原理的基础上，定制异步加载规范AMD，
+> 在上一条原始加载方式的基础上，定制异步加载规范AMD，
 > 让所有的JS文件采用window.define方式缓存在define内部的module对象上。
 > 这种方式的优化点在于引入了*加载器(bundler)*的概念来关联所有的文件。
 > 一个简单AMD规范文件代码如下，第一个参数'test'是个文件标示符,第二个参数是define的回调函数。
 ```javascript
-define(["test"], function (test) {
-	console.dir(test)
-　　	return 1
-　});
+	define(["test"], function (test) {
+		console.dir(test)
+	　　	return 1
+	　});
 ```
-这里关于AMD不做细致讨论，有兴趣的同学可以去看标配的AMD实现[require.js](http://www.requirejs.cn/)
+这里关于AMD只看代码而不做细致讨论，有兴趣的同学可以去看标配的AMD实现[require.js](http://www.requirejs.cn/)
 3、
-> 在AMD的基础上，JS在node领域终于借助node的IO及fs能力实践了CommonsJS规范，
-> 通过require('文件地址')，即可引入module.exports对象。
+> 在AMD的基础上，JS在node领域也终于借助node的IO及fs能力实践了CommonsJS规范，
+> 通过require('文件地址')，即可引入另一个文件的module.exports对象。
 ```javascript
 	// test.js
 	module.exports={a:1}
@@ -38,8 +37,37 @@ define(["test"], function (test) {
 ```
 以上的讨论只是简单的回顾了下JS模块规范演进的过程，现在我们还是回到主题webpack上面来。
 由于JS在browser和node领域的大放异彩，一份JS文件能同时运行在前后端环境的趋势催生了browserify及更强大的模块加载器(bundler)的需求。
-于是，webpack应运而生！
+于是，程序员们开发了webpack -- 一个非常优雅而简单的JS file module解决方案！
 
 # webpack华丽登场
+> 下面，我按照如下的目录结构进行webpack的简单讲解。
+1. webpack的设计思路
+2. webpack的体系架构
+3. 如何编写webpack的配置文件
+4. webpack常用的plugins及loader
+5. webpack总结
+
+## webpack的设计思路
+> 正如我们在开头提到的一样，webpack解决的痛点在于*兼容不同规范代码的组织方式*。
+> 官方
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
