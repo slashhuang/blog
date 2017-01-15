@@ -37,6 +37,9 @@ define(["test"], function (test) {
 	console.log(require('./test.js')) //打印{a:1}
 ```
 以上的讨论只是简单的回顾了下JS模块规范演进的过程，现在我们还是回到主题webpack上面来。
-由于JS在browser和node领域的大放异彩，一份JS文件能同时运行前后端环境，这种发展趋势
+由于JS在browser和node领域的大放异彩，一份JS文件能同时运行在前后端环境的趋势催生了browserify及更强大的模块加载器(bundler)的需求。
+于是，webpack应运而生！
+
+# webpack华丽登场
 
 
