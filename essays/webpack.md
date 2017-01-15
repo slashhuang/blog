@@ -55,7 +55,8 @@
 > 我们看一个示例 webpack.config文件
 ```javascript
 var webpack = require("webpack");
-module.exports =  {
+module.exports =  {	
+		context:process.cwd(),
         watch: true,
         entry: './index.js',
         devtool: 'source-map',
@@ -66,6 +67,9 @@ module.exports =  {
         resolve: {
             alias:{ jquery: 'src/lib/jquery.js', }
         },
+        externals: {
+        	"React": "react"
+    	},
         plugins: [
             new webpack.ProvidePlugin({
                 $: 'jquery',
@@ -128,6 +132,19 @@ module.exports =  {
 > 比如有个文件require('index.jsx'),
 > webpack会根据文件名是否满足test字段的正则来决定是否使用babel-loader来处理文件。
 > exclude则是告诉webpack不需要对node_modules目录进行处理
+
+- resolve对象
+```javascript
+  resolve: {
+            alias:{ jquery: path.resolve(process.cwd(),'src/lib/jquery.js')},
+            extensions:['.js','.json']
+        }
+```   
+> resolve对象是在webpack预编译时，就加载进整个webpack编译的处理配置中的。
+> 比如alias会将对象建立映射表,比如require('jquery')==> require('/Users/**/src/lib/jquery.js')
+
+
+
 
 
 
