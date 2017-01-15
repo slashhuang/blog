@@ -18,7 +18,7 @@
 2、
 > 在上一条的原理的基础上，定制异步加载规范AMD，
 > 让所有的JS文件采用window.define方式缓存在define内部的module对象上。
-> 这种方式的优化点在于引入了加载器(bundler)的概念来关联所有的文件。
+> 这种方式的优化点在于引入了*加载器(bundler)*的概念来关联所有的文件。
 > 一个简单AMD规范文件代码如下，第一个参数'test'是个文件标示符,第二个参数是define的回调函数。
 ```javascript
 define(["test"], function (test) {
@@ -28,5 +28,15 @@ define(["test"], function (test) {
 ```
 这里关于AMD不做细致讨论，有兴趣的同学可以去看标配的AMD实现[require.js](http://www.requirejs.cn/)
 3、
-> 在
+> 在AMD的基础上，JS在node领域终于借助node的IO及fs能力实践了CommonsJS规范，
+> 通过require('文件地址')，即可引入module.exports对象。
+```javascript
+	// test.js
+	module.exports={a:1}
+	// 另一个文件
+	console.log(require('./test.js')) //打印{a:1}
+```
+以上的讨论只是简单的回顾了下JS模块规范演进的过程，现在我们还是回到主题webpack上面来。
+由于JS在browser和node领域的大放异彩，一份JS文件能同时运行前后端环境，这种发展趋势
+
 
