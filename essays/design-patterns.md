@@ -15,6 +15,20 @@
 
 1. observer [观察者模式]
 > 根据状态的变化主动触发观察者队列、hashMap的回调行为
+> 一个简单的观察者模式代码实践
 ```javascript
-	
+	class StateTracker{
+		constructor(){
+			this.observers = [];
+			this.internamState= 10;
+		}
+		change(val){
+			this.internamState= val;
+			this.observers.forEach(observer=>observer(val));
+		}
+		registerObserver(ObserverFn){
+			this.obserers.push(ObserverFn)
+		}
+	}
+
 ```
