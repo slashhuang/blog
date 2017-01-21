@@ -9,6 +9,7 @@
 #### [5.koa2设计思想及源码分析](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
 #### [6.babel知识体系漫谈](https://github.com/slashhuang/blog/blob/master/essays/babel.md)
 #### [7.nodejs+react+redux架构](https://github.com/slashhuang/blog/blob/master/essays/node_fe_architechture.md)
+#### [8.JS设计模式漫谈](https://github.com/slashhuang/blog/blob/master/essays/design-patterns.md)
 
 ### 技术分享PPT列表
 
