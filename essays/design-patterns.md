@@ -70,6 +70,112 @@
 	}
 ```
 
+3. singleton[单例模式]
+
+> 构造函数的实例只有一个，一般是通过闭包存储内部实例，通过接口访问内部实例。
+
+```javascript
+	var singleton = ()=>{
+		var instance;
+		var createInstance = ()=>{
+			this.a = 1;
+			this.b = 2;
+		}
+		return {
+			getInstance:()=>{
+				if(!instance){
+					instance = createInstance();
+				}
+				return instance;
+			}
+		}
+	}
+	var test = singleton();
+	test.getInstance() == test.getInstance() //true
+
+```
+
+4. decorator混合模式
+
+> 这个模式就是在原有的对象上面装饰更多行为，并且保持变量名不变。
+> 用过ES7的@decorator或者python等语言的，应该对decorator不陌生的。
+
+```javascript
+	function decorator(sourceObj,decortorFn){
+		decortorFn(sourceObj);
+		return sourceObj
+	}
+	var d = {a:1};
+	// d变为了{a:1,b:1}
+	d = decorator(d,(d)=>{d.b=1});
+```
+
+5. mixin混合模式
+
+> 这个模式和decorator有点类似，只是它的功能更加垂直。
+> 就是在原有的对象上面增加、覆盖对象的行为。
+> 相比于extends、Object.assign等方法，mixin模式更富有表现力。
+> mixin模式不能一概而论，可能依据不同的数据类型有不同的mixin策略，比如vue.mixin
+
+```javascript
+	class StateTracker{
+		constructor(){
+			this.raw = {
+				a:1,
+				b:2
+			}
+		}
+		mixin(obj){
+			Object.assign(this.raw,obj)
+		}
+	}
+```
+
+> 笔者就暂时先介绍这么多设计模式，下面就针对常用的框架、语法、库等来说明这些设计模式的应用。
+
+
+## observer模式在redux中的使用
+
+```javascript
+	var store = createStore(reducer,initialState);
+	//注册redux store，存储在 nextListeners数组
+	var test = store.subscribe(()=>{console.log('我注册了！')});
+	// 取消注册监听
+	test.unsubscribe();
+```
+## publish/subscribe在jquery中的使用
+
+```javascript
+	$(document).on('hello',()=>{console.log('hello')})
+	$(document).trigger('hello');
+	$(document).off('hello')
+```
+
+## decorator模式在react-redux中的实践
+
+```javascript
+	//装饰器
+	@connect(state=>state)
+	class Container extends Component{
+		render(){
+			return JSON.stringify(this.props)	
+		}
+	}
+```
+
+# 总结
+
+> 关于设计模式在前端框架或库的实践，我这边写的是比较简略的。
+> 可能没有写过相关代码的同学不是特别好理解。
+> 总之，在读完本文后，大家对设计模式的概念有所了解和帮助，我就觉得已经达到目的了。
+
+> 本文首发于笔者的github blog 
+
+
+
+
+
+
 
 
 
