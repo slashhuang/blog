@@ -26,10 +26,13 @@ webpack2新增的能力。
     /******/ 		var getter = module && module.__esModule ?
     /******/ 			function getDefault() { return module['default']; } :
     /******/ 			function getModuleExports() { return module; };
+                    //在getter上挂载a property
     /******/ 		__webpack_require__.d(getter, 'a', getter);
     /******/ 		return getter;
     /******/ 	};
 ```
+> 值得一提的的是import NAME from ''这种形式的变量名NAME将会由__webpack_require__.n
+> 转换成_WEBPACK_IMPORTED_MODULE_0__module___default.a的形式
 
 - require.ensure异步加载采用__webpack_require__进行加载，不兼容export default。
 
