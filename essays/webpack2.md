@@ -6,6 +6,36 @@ webpack2新增的能力。
 
 1. webpack以harmony mode处理```export/import``` 
 
+
+- 模块加载器参数变化 由exports转为__webpack_exports__。
+>(function(module, __webpack_exports__, __webpack_require__) 
+
+- 兼容ES6的harmony 模块引入方式。
+> /* harmony export (binding) */ __webpack_require__.d
+
+> /* harmony default export */ __webpack_exports__["default"]
+
+[ES.next](https://addyosmani.com/writing-modular-js/)
+[ES harmony module proposal](http://wiki.ecmascript.org/doku.php?id=harmony:modules)
+
+- webpack提供的module.exports与ES6模块兼容方式
+```javascript
+    /******/ 	// getDefaultExport function for compatibility with non-harmony modules
+    /******/ 	__webpack_require__.n = function(module) {
+                    // 如果是ES harmony的模块 就return ['default'],不然直接return module
+    /******/ 		var getter = module && module.__esModule ?
+    /******/ 			function getDefault() { return module['default']; } :
+    /******/ 			function getModuleExports() { return module; };
+    /******/ 		__webpack_require__.d(getter, 'a', getter);
+    /******/ 		return getter;
+    /******/ 	};
+```
+
+- require.ensure异步加载采用__webpack_require__进行加载，不兼容export default。
+
+
+
+
 //webpack这两种模式严格区分开
 import Obj from './test'; ==> export default
 
@@ -29,3 +59,5 @@ webpack --config webpack.config.js
     ...
     }
 ```
+
+## webpack.config报错体系
