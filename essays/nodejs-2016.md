@@ -1,18 +1,4 @@
-# 2017年nodeJS展望
-## 技术选型nodeJS版本
-
-#### 简述
-> nodeJS的LTS是严格按照官方计划执行，虽然目前的feature版本是7.5.0,但是对应的LTS计划并没有推出。
-
-> 目前nodeJS的Acitve版本是V6系列，在此笔者推荐大家在生产环境使用V6系列的nodeJS。
-
-> 毕竟出了问题可以提出issue,也会有专门的maintainer及时处理。
-
-> nodeJS对于V7系列的开发也是相当的积极，2016年就出了很多feature和patch。
-
-> 也是挺推荐喜欢尝鲜的开发者进行此版本的使用。
-
-## nodeJS 2016年官方技术调查报告
+# nodeJS 2016年官方技术调查报告
 
 > 官方报告的核心要点对于我们国内开发者来说，有挺多值得国内的nodeJS开发者关注的。
 
@@ -115,7 +101,16 @@
 
 > 在multi-terminal、IoT领域，JS将大放异彩。
 
-> 很期待国内的开发者能够共同推进nodeJS的发展。
+> nodeJS的LTS是严格按照官方计划执行，虽然目前的feature版本是7.5.0,但是对应的LTS计划并没有推出。
+
+> 目前nodeJS的Acitve版本是V6系列，在此笔者推荐大家在生产环境使用V6系列的nodeJS。
+
+> 同时，nodeJS对于V7系列的开发也是相当的积极，2016年就出了很多feature和patch。
+
+> 推荐喜欢尝鲜的开发者进行此版本的使用。
+
+> 文末，很期待nodeJS在国内的发展能够在2017年进一步增加国际影响力。
+
 
 #### 参考资料
 [nodeJS LTS](https://github.com/nodejs/LTS#lts-schedule)
