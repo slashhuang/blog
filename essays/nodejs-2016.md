@@ -24,15 +24,15 @@
 
 > 当然，相比express而言，笔者认为2017年开始koa将会后来居上。
 
-> 相比angular,react或者vue也会迎头赶上。
+> react或者vue也会迎头赶上angular的技术使用圈。
 
-> 明年的技术栈潮流可能会逐渐变为MKRN或者MKVN，当然angular的庞大技术生态圈暂时仍旧会是主流。
+> 明年的技术栈潮流可能会逐渐变为MKRN或者MKVN。
 
 3.生产环境大面积应用nodeJS
 
 > 在调查的350万nodeJS的开发者中，有45%的开发者在企业级应用中采用了V4+的nodeJS稳定版本。
 
-4. IoT范围下使用nodeJS成为一大亮点
+4.IoT范围下使用nodeJS成为一大亮点
 
 > IoT的概念可能有些同学不太了解，它的英文全拼是Internet of things。
 
