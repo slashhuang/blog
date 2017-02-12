@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tab组件学习</title>
+	<style>
+		*{
+			box-sizing:border-box;
+		}
+		#root{
+			margin:auto;
+			width:600px;
+			border-radius:20px;
+			padding:20px;
+		}
+		.tab-header {
+            border-bottom: 1px solid #ccc;
+        }
+        .tab-header.clear-fix:after{
+           content:"";
+    	   display: block;
+           clear:both;
+        }
+        .tab-header [class*="tab-item"] {
+            float: left;
+            color: brown;
+            border: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .tab-header .active {
+        	position: relative;
+        	bottom: -1px;
+            border: 1px solid #ccc;
+            border-bottom-color: #fff;
+            border-radius: 4px 4px 0 0;
+            color: #333;
+        }
+        .tab-body{
+        	padding: 20px 10px;
+        }
+	</style>
+</head>
+<body>
+	<div id='root'></div>
+	<script type="text/javascript">
+		// 创建基本的数据模型
+		var TabBaseConfig = {
+			/*存储tab
+			 *{ tabName:'tab1',tabContent:'html字符串' }
+			 */
+			tabList:[],
+			//首屏展示的tab
+			indexTab:0
+		};
+		var TabFactorty = function(tabConfig) {
+			var tabConfig = Object.assign({},TabBaseConfig,tabConfig);
+			this.tabList = tabConfig.tabList;
+			this.activeTab =  tabConfig.indexTab;
+			this.targetDom = null;
+		};
+		TabFactorty.prototype.layoutRender=function(){
+			var tabListString = this.tabList.map(function(tab,index){
+				return ['<div class="tab-item-'+index+'"">',tab.tabName,'</div>'].join('')
+			}).join("");
+			return ['<div class="tab-header clear-fix">',tabListString ,
+						'</div><div class="tab-body"></div>'].join('')
+		};
+		TabFactorty.prototype.getElement=function(className){
+			return targetDom.getElementsByClassName(className)[0];
+		} 
+		TabFactorty.prototype.indexRender = function(index){
+			var targetTab = this.tabList[index]; 
+			var tabBody = this.getElement("tab-body");
+			var tabHeader = this.getElement("tab-item-"+index);
+			var previouseTab =  this.getElement("tab-item-"+this.activeTab);
+			tabBody.innerHTML = targetTab['tabContent'];
+			tabHeader.classList.add('active');
+			if(index!=this.activeTab){
+				previouseTab.classList.remove('active');
+				this.activeTab = index;
+			}
+		}
+		TabFactorty.prototype.events=function(){
+			var that = this;
+			that.tabList.forEach(function(tab,index){
+				that.getElement('tab-item-'+index).addEventListener('click',function(){
+					that.indexRender(index);
+				})
+			})
+		};
+		TabFactorty.prototype.renderTo=function(targetDom){
+			targetDom.innerHTML = this.layoutRender();
+			this.targetDom = targetDom;
+			this.indexRender(this.activeTab)
+			this.events(targetDom);
+		};
+		var targetDom = document.getElementById('root');
+		var tabList = [{ 
+			tabName:'tab1',tabContent:'tab1' 
+		},{ 
+			tabName:'tab2',tabContent:'tab2' 
+		},];
+		// 生成实例
+		var tabContainer = new TabFactorty({ tabList:tabList });
+		// 渲染到dom节点
+		tabContainer.renderTo(targetDom)
+	</script>
+</body>
+</html>
