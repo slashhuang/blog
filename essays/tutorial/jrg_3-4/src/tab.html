@@ -47,7 +47,7 @@
 		// 创建基本的数据模型
 		var TabBaseConfig = {
 			/*存储tab
-			 *{ tabName:'tab1',tabContent:'html字符串' }
+			 *每一项{ tabName:'tab1',tabContent:'html字符串' }
 			 */
 			tabList:[],
 			//首屏展示的tab
@@ -55,8 +55,11 @@
 		};
 		var TabFactorty = function(tabConfig) {
 			var tabConfig = Object.assign({},TabBaseConfig,tabConfig);
+			//tab数组
 			this.tabList = tabConfig.tabList;
+			//当前激活的tab 序数
 			this.activeTab =  tabConfig.indexTab;
+			//渲染的目标dom节点
 			this.targetDom = null;
 		};
 		TabFactorty.prototype.layoutRender=function(){
@@ -66,9 +69,11 @@
 			return ['<div class="tab-header clear-fix">',tabListString ,
 						'</div><div class="tab-body"></div>'].join('')
 		};
+		//获取元素
 		TabFactorty.prototype.getElement=function(className){
 			return targetDom.getElementsByClassName(className)[0];
 		} 
+		//渲染对应序数号的元素样式
 		TabFactorty.prototype.indexRender = function(index){
 			var targetTab = this.tabList[index]; 
 			var tabBody = this.getElement("tab-body");
@@ -81,6 +86,7 @@
 				this.activeTab = index;
 			}
 		}
+		//挂载事件
 		TabFactorty.prototype.events=function(){
 			var that = this;
 			that.tabList.forEach(function(tab,index){
@@ -89,12 +95,14 @@
 				})
 			})
 		};
+		//程序入口
 		TabFactorty.prototype.renderTo=function(targetDom){
 			targetDom.innerHTML = this.layoutRender();
 			this.targetDom = targetDom;
 			this.indexRender(this.activeTab)
 			this.events(targetDom);
 		};
+		//测试
 		var targetDom = document.getElementById('root');
 		var tabList = [{ 
 			tabName:'tab1',tabContent:'tab1' 
