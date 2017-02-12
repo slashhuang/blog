@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf src/amd/dist &&  r.js build.js",
-    "optimize": " rm -rf src/amd/dist && r.js -o build.js"
+    "start": " rm -rf src/amd/dist && r.js -o build.js"
   },
   "author": "slashhuang",
   "license": "ISC",
