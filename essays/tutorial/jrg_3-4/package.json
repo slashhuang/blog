@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "rm -rf src/amd/dist &&  r.js build.js",
+    "optimize": " rm -rf src/amd/dist && r.js -o build.js"
   },
-  "author": "",
+  "author": "slashhuang",
   "license": "ISC",
   "devDependencies": {
     "requirejs": "^2.3.2"

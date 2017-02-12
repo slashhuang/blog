@@ -1,2 +1,2 @@
 console.log('I need shim');
-console.log(window.shim1() + 'shim entry');
+console.log(this.shim1() + 'shim entry');

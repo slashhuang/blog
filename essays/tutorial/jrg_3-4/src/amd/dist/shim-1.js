@@ -1,0 +1,1 @@
+this.shim1=function(i){return"shim1"};
