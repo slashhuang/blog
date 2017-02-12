@@ -812,6 +812,7 @@ var requirejs, require, define;
                 //If the manager is for a plugin managed resource,
                 //ask the plugin to load it now.
                 if (this.shim) {
+                    debugger;
                     context.makeRequire(this.map, {
                         enableBuildCallback: true
                     })(this.shim.deps || [], bind(this, function () {
@@ -1815,8 +1816,8 @@ var requirejs, require, define;
     /**
      * Export require as a global, but only if it does not already exist.
      */
-    debugger; 
     if (!require) {
+        debugger; 
         require = req;
     }
 
@@ -1871,6 +1872,7 @@ var requirejs, require, define;
      * Creates the node for the load command. Only used in browser envs.
      */
     req.createNode = function (config, moduleName, url) {
+        debugger;
         var node = config.xhtml ?
                 document.createElementNS('http://www.w3.org/1999/xhtml', 'html:script') :
                 document.createElement('script');

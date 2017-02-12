@@ -1,5 +1,4 @@
 define(function() {
-
   var a = 1;
   var inc = {
     add1: function() {
