@@ -67,6 +67,7 @@
 		  		that.check();
 			});
 		}
+		//触发加载
 		LazyLoad.prototype.triggerLoad= function(){
 			var imgNode = this.node.querySelectorAll('img')[0];
 			var imgUrl = imgNode.getAttribute('data-src');
@@ -79,11 +80,6 @@
 			})
 		}
 		init(containerDom);
-
-
-
-
-		
 	</script>
 </body>
 </html>
