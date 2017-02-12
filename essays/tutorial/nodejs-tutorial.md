@@ -1,28 +1,28 @@
 # nodeJS教程
 
-## nodeJS概述
+1. nodeJS概述
 
-## commonJS及npm概述
+2. commonJS及npm概述
 
-## http协议及网络编程概述
+3. http协议及网络编程概述
 
-## nodeJS架构体系
+4. nodeJS架构体系
 
-## web编程实战
+5. http网络编程概述
 
-## 使用koa框架编程
+6. cookie session讲解
 
-## 采用baas【leanCloud】作为数据后台
+7. ES6语法入门
 
-## cookie session讲解
+8. web编程实战，使用koa框架编程
 
-## http核心模块
+9. 采用baas【leanCloud】作为数据后台
 
-## 基本的数据库设计
+10. 基本的数据库设计
 
-## 编写你自己的npm开源库
+11. 编写你自己的npm开源库
 
-## stream流入门
+12. stream流入门
 
-## 采用子进程和cluster集群增强应用的健壮性
+13. 采用子进程和cluster集群增强应用的健壮性
 
