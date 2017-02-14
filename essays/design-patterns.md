@@ -52,7 +52,7 @@
 		}
 		//移除
 		off(topicName){
-			delete this.observers[topicName]
+			delete this.eventPool[topicName]
 		}
 		//发布
 		trigger(topicName,...args){
