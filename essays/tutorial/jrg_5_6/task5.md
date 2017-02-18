@@ -48,7 +48,7 @@ npm3的优化点在于对于以字母序安装npm包的时候，优先安装在n
 
 ## 题目6： 使用 webpack 替换 入门-任务15中模块化使用的 requriejs
 
-[参见src目录示例代码](./src)
+[参见webpack_require目录示例代码](./webpack_require)
 
 
 ## 题目7： 开发一个 node 命令行天气应用用于查询用户当前所在城市的天气
