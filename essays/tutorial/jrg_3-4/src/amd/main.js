@@ -8,11 +8,13 @@ require.config({
     //for those cases.
     shim: {
     	'shim-0':{
+            //手动告诉如何找依赖，管理非AMD规范代码
     		deps: ['shim-1']
     	}
     }
  });
+debugger;
 require(['starting','shim-0'],function(start,shim) {
-	debugger;
+	console.log('终于加载完了')
 });
 console.log("starting");

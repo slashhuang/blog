@@ -15,13 +15,13 @@
     //List the modules that will be optimized. All their immediate and deep
     //dependencies will be included in the module's file when the build is
     //done.
-    // modules: [
-    //      { name: "bundle" }
-    // ],
-    // //Set paths for modules. If relative paths, set relative to baseUrl above.
-    // paths: {
-    //      bundle: './main'
-    // },
+    modules: [
+         { name: "bundle" }
+    ],
+    //Set paths for modules. If relative paths, set relative to baseUrl above.
+    paths: {
+         bundle: './main'
+    },
     //The directory path to save the output. If not specified, then
     //the path will default to be a directory called "build" as a sibling
     //to the build file. All relative paths are relative to the build file.

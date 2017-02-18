@@ -1,3 +1,4 @@
+debugger;
 define(function() {
   var a = 1;
   var inc = {

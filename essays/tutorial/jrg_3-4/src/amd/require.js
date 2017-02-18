@@ -812,7 +812,6 @@ var requirejs, require, define;
                 //If the manager is for a plugin managed resource,
                 //ask the plugin to load it now.
                 if (this.shim) {
-                    debugger;
                     context.makeRequire(this.map, {
                         enableBuildCallback: true
                     })(this.shim.deps || [], bind(this, function () {
@@ -1817,7 +1816,6 @@ var requirejs, require, define;
      * Export require as a global, but only if it does not already exist.
      */
     if (!require) {
-        debugger; 
         require = req;
     }
 

@@ -63,6 +63,7 @@
 		//添加滚动监听
 		LazyLoad.prototype.addScrollEvent = function(){
 			var that = this;
+			//最核心的逻辑
 			window.addEventListener('scroll', function(e) {
 		  		that.check();
 			});
