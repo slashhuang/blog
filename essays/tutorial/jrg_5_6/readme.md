@@ -39,7 +39,9 @@ npm install -g <packagename>
 
 > 分别是在dependencies和devDependencies字段下，添加app:"版本号"。
 
-> 可以通过npm install --only=production仅仅安装dependency
+> npm install will install both "dependencies" and "devDependencies"
+> npm install --production will only install "dependencies"
+> npm install --dev will only install "devDependencies"
 
 ## 题目4： nodule_modules的查找路径是怎样的?
 
