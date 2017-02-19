@@ -56,7 +56,21 @@ npm3的优化点在于对于以字母序安装npm包的时候，优先安装在n
 ## 题目7： 开发一个 node 命令行天气应用用于查询用户当前所在城市的天气
          发布到 npm 上去。可以通过如下方式安装使用(可使用api.jirengu.com里提供的查询天气接口)
 
+> 命令集合
+```bash
+	# 首次
+	npm adduser 
+	# 登录
+	npm login
+	# 发布包
+	npm publish 
+	# 发布patch代码
+	npm version patch
+
+```
 [参见node-weather目录示例代码](./node-weather)
+[npm包发布官方说明](https://docs.npmjs.com/getting-started/publishing-npm-packages)
+
 
 
 

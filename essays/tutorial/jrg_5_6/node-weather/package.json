@@ -1,9 +1,9 @@
 {
   "name": "china-city-weather",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a weather cli ",
-  "bin":{
-    "weather":"bin.js"
+  "bin": {
+    "weather": "bin.js"
   },
   "main": "index.js",
   "scripts": {
