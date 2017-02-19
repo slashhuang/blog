@@ -62,6 +62,8 @@ npm install -g <packagename>
 
 > 这样做的好处是如果后续包有相关依赖则不需要重复安装。
 
+[yarn versus npm](https://www.sitepoint.com/yarn-vs-npm/)
+
 
 ## 题目6： 使用 webpack 替换 入门-任务15中模块化使用的 requriejs
 
