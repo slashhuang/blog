@@ -1,5 +1,7 @@
 # npm_npmscript_webpack_node应用
 
+[高级5课前问卷地址](https://sojump.com/jq/12187379.aspx)
+
 ##课程任务
 
 ### 题目1： 如何全局安装一个 node 应用?

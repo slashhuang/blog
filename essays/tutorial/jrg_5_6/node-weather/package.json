@@ -1,0 +1,18 @@
+{
+  "name": "china-city-weather",
+  "version": "1.0.0",
+  "description": "a weather cli ",
+  "bin":{
+    "weather":"bin.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./bin"
+  },
+  "keywords": [
+    "weather",
+    "node"
+  ],
+  "author": "slashhuang",
+  "license": "ISC"
+}
