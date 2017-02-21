@@ -4,10 +4,10 @@
 var path =require('path');
 module.exports = {
  	watch:true,
- 	context:path.resolve(process.cwd(),'./webpack_js'),
+ 	context:path.resolve(__dirname,'./webpack_js'),
  	entry:"./main.js",
  	output:{
  		path:"./webpack_js/dist",
  		filename:'[name].js'
  	}
- }
+}

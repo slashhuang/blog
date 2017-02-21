@@ -105,7 +105,11 @@ var _1 = __webpack_require__(0);
 var _2 = __webpack_require__(1);
 let body = document.body
 let cache = body.innerHTML;
-body.innerHTML  = `${cache} I am webpack main`
+//模板字符串 ES6
+// body.innerHTML  = `${cache} I am webpack main`;
+// 换成ES5的代码
+body.innerHTML  = cache + ' I am webpack main';
+alert(1);
 
 
 /***/ })

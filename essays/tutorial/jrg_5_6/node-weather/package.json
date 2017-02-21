@@ -1,6 +1,6 @@
 {
-  "name": "china-city-weather",
-  "version": "1.0.1",
+  "name": "china-city-weather-1",
+  "version": "1.0.2",
   "description": "a weather cli ",
   "bin": {
     "weather": "bin.js"
