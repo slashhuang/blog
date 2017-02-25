@@ -1,13 +1,20 @@
 # 前端设计模式作业答案
 
-1. 写出 构造函数模式、混合模式、模块模式、工厂模式、单例模式、发布订阅模式的范例。
+1. 写出 构造函数模式、constructor new
+	工厂模式、factory
+	混合模式、mixin
+	模块模式、module 
+	
+	单例模式、singleton
+	发布订阅模式的范例。 publish/subscibe
+
 2. 使用发布订阅模式写一个事件管理器，可以实现如下方式调用
 
 
 ## 代码
 
 1. 构造函数
-
+  
 function Person(name, age){
   this.name = name;
   this.age = age;
@@ -22,29 +29,34 @@ var student = new Person("若愚", 30);
 
 
 2. 工厂模式
+
 function createPerson(name){
      var person = {
-       name: name
+       name: name,
+       sayName: function(){
+       		console.log(this.name);
+     	}
      };
-     person.sayName: function(){
-       console.log(this.name);
-     }
      return person;
 };
+//this指向
+
 createPerson('jirengu')
+createPerson('jdjid')
 
 
 -------------------------------------------------
 
 
 3. 单例模式
+// 匿名函数 
 var People = (function(){
     var instance;
     function init(name) {
         return {
         	name:name
         };
-    }
+    }; //词法作用域
     return {
         createPeople: function(name) {
             if (!instance) {
@@ -54,12 +66,15 @@ var People = (function(){
         }
     };
 }());
-People.createPeople('jirengu')
+
+People.createPeople('jirengu'); //{name:'jirengu'}
+People.createPeople('hello');//{name:'jirengu'}
+
 
 -------------------------------------------------
 
 
-4. 混合模式
+4. 混合模式 mixin
 // 实例1js
 var Person = function(name, age) {
     this.name = name;
@@ -68,12 +83,16 @@ var Person = function(name, age) {
 Person.prototype.sayName = function(){
   console.log(this.name);
 }
+
 var Student = function(name, age,  score) {
     Person.call(this, name, age);
+    // this.name= name; this.age= age;
     this.score = score;
 };
 //Student.prototype = Object.create(Person.prototype);
 Student.prototype = create(Person.prototype);
+
+//Object.c
 function create (parentObj){
     function F(){}
     F.prototype = parentObj;
@@ -82,6 +101,7 @@ function create (parentObj){
 Student.prototype.sayScore = function(){
   console.log(this.score);
 }
+
 var student = new Student("饥人谷", 28, 99);
 
 
@@ -90,11 +110,12 @@ var student = new Student("饥人谷", 28, 99);
 
 5. 模块模式
 
+//通过闭包来实现一个模块
 var Person = (function(){
 	var name = 'ruoyu';
 	function sayName(){
 		console.log(name);
-	}
+	};// 词法作用域
 	return {
 		name: name,
 		sayName: sayName
@@ -105,16 +126,21 @@ var Person = (function(){
 -------------------------------------------------
 
 
-6. 订阅发布模式
+6. 订阅发布模式 subscribe publish
 
 var EventCenter = (function(){
-  var events = {};
+  var events = {}; //存储所有的key/value
+  //('hello',function(){})
   function on(evt, handler){
+  	//events['hello'] = [{
+  	// 	handler:function
+  	// }];
     events[evt] = events[evt] || [];
     events[evt].push({
       handler: handler
     });
   }
+  //('hello')
   function fire(evt, args){
     if(!events[evt]){
       return;
@@ -123,9 +149,15 @@ var EventCenter = (function(){
       events[evt][i].handler(args);
     }
   }
+  function off(name){
+  	//key/value
+  	delete events[name]
+  }
+
   return {
     on: on,
-    fire: fire
+    fire: fire,
+    off:off //取消订阅
   }
 })();
 
@@ -165,7 +197,6 @@ var EventCenter = (function(){
 4	2月25日 14:23	用户从登陆，然后拥有权限的一个流程，比如我登录了饥人谷，然后就能看视频，这个前端到后端的流程是什么样子的，前端需要干些什么事情	
 6	2月25日 14:29	老师有没有什么好的学习习惯 跟我们分享一下	
 8	2月25日 16:52	框架的一些实现原理
-
 7.有其他问题要问老师的吗？
 
 2	2月25日 14:18	暂时没有	
