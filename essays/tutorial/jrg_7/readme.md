@@ -102,6 +102,31 @@ localStorage.removeItem('colorSetting');
 
 
 -------------------------------------------------------
+总结:
+CSS3:
+选择器 ==>
+框模型 ==> border-radius / box-shadow / border-image
+背景和边框 ==> background-size / background-origin
+
+文本效果 ==> text-shadow / word-wrap
+2D/3D 转换 ==> 
+translate(x,y) / rotate(deg) / scale(x,y) 
+/ skew(xdeg,ydeg) / matrix()
+/ rotateX() / rotateY()
+
+过渡  
+transition / 
+transition-property transition-duration transition-timing-function transition-delay
+动画
+@keyframes animation
+> http://www.w3school.com.cn/css3/css3_animation.asp
+用户界面 box-sizing
+
+
+
+
+-------------------------------------------------------
+
 
 
 问卷调查结果
