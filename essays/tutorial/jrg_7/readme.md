@@ -42,6 +42,49 @@ autofocus
 -------------------------------------------------------
 
 
+题目3： 浏览器本地存储中 cookie 和 localStorage 有什么区别？ localStorage 如何存储删除数据。
+
+3.1 同: 
+
+同源策略、浏览器端
+
+3.2 区别: 
+
+存储区大小: cookie : 4K ; localStorage 5M
+
+应用场景: cookie ==> http请求 ;  localStorage 5M ==> 离线存储
+
+过期时间: cookie ==> 有过期时间;  localStorage ==> 永久存储
+
+
+3.3 一些trick
+
+对于不支持localStorage的浏览器可以通过cookie来模拟它的功能
+
+
+3.4 localStorage提供的api
+
+localStorage.colorSetting = '#a4509b';
+localStorage['colorSetting'] = '#a4509b';
+localStorage.setItem('colorSetting', '#a4509b');
+localStorage.removeItem('colorSetting');
+
+
+-------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
