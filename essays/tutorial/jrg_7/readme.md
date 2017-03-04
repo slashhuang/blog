@@ -72,17 +72,32 @@ localStorage.removeItem('colorSetting');
 
 -------------------------------------------------------
 
+题目4： 写出如下 CSS3效果的简单事例
+
+    1. 圆角， 圆形
+    2. div 阴影
+    3. 2D 转换：放大、缩小、偏移、旋转
+    4. 3D 转换：移动、旋转
+    5. 背景色渐变
+    6. 过渡效果
+    7. 动画
+[参考顾嘉诚的答案](./css3.html)    
+
+-------------------------------------------------------
+
+题目5： 实现如下全屏图加过渡色的效果（具体效果随意）[DEMO18](http://book.jirengu.com/jirengu-inc/js-works/css3/big-cover.html)
+
+[参考顾嘉诚的答案](./gradient.html)    
+
+-------------------------------------------------------
 
 
+题目6： 写出如下 loading 动画效果
 
 
+[loading_circle]('./loading_circle.html')
 
-
-
-
-
-
-
+[loading_music]('./loading_music.html')
 
 
 

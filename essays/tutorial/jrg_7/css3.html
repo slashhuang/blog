@@ -1,0 +1,138 @@
+<html><head>
+	<meta charset="utf-8">
+	<title>CSS3</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			padding: 100px;
+		}
+		h3{
+			margin: 50px 0;
+		}
+
+		.circle{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			border-radius: 50%;
+		}
+		.half-circle{
+			width: 100px;
+			height: 50px;
+			background-color: red;
+			border-radius: 50px 50px 0 0;
+		}
+		.box-shadow{
+			border: 1px solid #333;
+			width: 100px;
+			height: 100px;
+			box-shadow: 5px 3px 3px 2px #ccc;
+		}
+		.ct{
+			border: 1px dashed #333;
+			width: 100px;
+		}
+		.enlarge{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			transform: scale(2,0.5);
+		}
+		.move{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			transform: translate(20px,30px);
+		}
+		.revolve{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			transform: rotate(10deg);
+		}
+		.tran-3d{
+			transform-style: preserve-3d;
+		}
+		.move-3d{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			transform: translate(10px,20px) rotateY(30deg);
+			perspective: 300px;
+		}
+		.grad{
+			width: 100px;
+			height: 100px;
+			background: linear-gradient(to bottom left,red ,pink, blue);
+		}
+		.transition{
+			width: 100px;
+			height: 100px;
+			background-color: #ccc;
+			transition: all 1s
+		}
+		.transition:hover{
+			width: 150px;
+			height: 150px;
+		}
+		.animate{
+			width: 100px;
+			height: 100px;
+			border: 50px solid rgba(156,184,30,0.3);
+			border-radius: 50%;
+			border-top: 50px solid rgb(156,184,30);
+			animation: 1s round infinite linear;
+		}
+		@keyframes round{
+			from{
+				transform: rotate(0);
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- 1. 圆角， 圆形 -->
+	<h3>圆形</h3>
+	<div class="circle"></div>
+	<h3>半圆</h3>
+	<div class="half-circle"></div>
+	<!-- 2. div 阴影 -->
+	<h3>阴影</h3>
+	<div class="box-shadow"></div>
+	<!-- 3. 2D 转换：放大、缩小、偏移、旋转 -->
+	<h3>放大/缩小</h3>
+	<div class="ct">
+		<div class="enlarge"></div>
+	</div>
+	<h3>偏移</h3>
+	<div class="ct">
+		<div class="move"></div>
+	</div>
+	<h3>旋转</h3>
+	<div class="ct">
+		<div class="revolve"></div>
+	</div>
+    <!-- 4. 3D 转换：移动、旋转 -->
+    <div class="tran-3d">
+    	<h3>3D 转换：移动/旋转</h3>
+    	<div class="ct">
+    		<div class="move-3d">1</div>
+    	</div>
+    </div>
+    <!-- 5. 背景色渐变 -->
+    <h3>背景色渐变</h3>
+    <div class="grad"></div>
+    <!-- 6. 过渡效果 -->
+    <h3>过渡效果</h3>
+    <div class="transition">放上鼠标</div>
+    <!-- 7. 动画 -->
+    <h3>动画</h3>
+    <div class="animate"></div>
+
+	</body></html>
