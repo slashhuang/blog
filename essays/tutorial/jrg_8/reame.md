@@ -19,10 +19,16 @@
 
 
 [题目1](./media.html)
-[参考文档](http://book.jirengu.com/fe/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/HTML5%E5%92%8CCSS3/media_query.html)
+
+[饥人谷参考文档](http://book.jirengu.com/fe/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/HTML5%E5%92%8CCSS3/media_query.html)
 
 
 [题目2](./grid.html)
+
 [参考蚂蚁金服设计规范](https://ant.design/components/grid-cn/)
+
 [蚂蚁金服设计理念](https://ant.design/docs/spec/introduce-cn)
+
 [bootstrap3 grid设计理念](http://getbootstrap.com/css/#grid-media-queries)
+
+[flexbox教程](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
