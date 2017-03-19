@@ -17,6 +17,8 @@ grid 容器
 	column 列
 
 
+一行化为 12等分
+
 
 	
 
@@ -45,8 +47,8 @@ grid 容器
 第2题：你使用过下面哪些UI框架
 答案:主要是bootstrap
 ----讲解知识点 
-iview
-ant-design
+iview vue2
+ant-design  react
 
 --------------------2----------------------
 
@@ -60,7 +62,8 @@ ant-design
 	- 与flexbox布局类似，是一种二维网格布局系统。
 
 比较好的回答
-	- 	使用@media去设置在不同宽度下，不同Class的宽度，然后在相应的容器写入相应的class，
+	- 	使用@media去设置在不同宽度下，不同Class的宽度，
+	    然后在相应的容器写入相应的class， col--2
 		使其在不同宽度下，各容器div表现出不同形式
 		参考(http://getbootstrap.com/css/#grid)
 
@@ -88,9 +91,9 @@ ant-design
 
 排名由前到后
     - ES6/7的语法  
-    - vue    
+    - vue v-html @click   逻辑编程===>声明式编程 html css  
     - Node.js  
-    - react     
+    - react JSX+V-dom + 生命周期 + 周边技术生态 ==> 阿里系    
     - http协议  
     - webpack	
 
