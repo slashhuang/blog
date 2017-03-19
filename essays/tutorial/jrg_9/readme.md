@@ -1,25 +1,15 @@
 
 
-[任务地址](http://jscode.me/c/tasks/senior-task9)
+[任务地址](http://jscode.me/t/bootstrap-less-css-css/251)
 
 -------------------------------------------------------
-题目1： 用媒体查询实现如下要求
 
-1. 在页面宽度> 1200px 时页面背景为红色
-2. 在页面1200px>=宽度> 900px  时页面背景为绿色
-3. 在页面900px>=宽度> 600px  时页面背景为黄色
-4. 宽度<=600px 背景为灰色
+sass及less讲解
 
 
-题目2： 实现一个简单的栅格系统(可选题目)
-grid 容器
-	row 行
-	column 列
 
-
-一行化为 12等分
-
-
+[sass中文文档](http://sass.bootcss.com/docs/sass-reference/)
+[less中文文档](http://lesscss.cn/)
 	
 
 -------------------------------------------------------
