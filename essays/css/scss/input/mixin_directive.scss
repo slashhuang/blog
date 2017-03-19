@@ -46,7 +46,9 @@
 
 @mixin highlighted-background { background-color: #fc0; }
 @mixin header-text { font-size: 20px; }
-
+.test{
+  @include compound
+}
 
 
 // Arguments
@@ -58,14 +60,15 @@
   }
 }
 
-p { @include sexy-border(blue, 1in); }
+p { @include sexy-border(blue, 10px); }
 
 
 
+$b:box-shadow;
 @mixin box-shadow($shadows...) {
-  -moz-box-shadow: $shadows;
-  -webkit-box-shadow: $shadows;
-  box-shadow: $shadows;
+  -moz-#{$b}: $shadows;
+  -webkit-#{$b}: $shadows;
+  #{$b}: $shadows;
 }
 
 .shadows {

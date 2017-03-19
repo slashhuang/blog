@@ -4,19 +4,33 @@
  * reference==> http://sass.bootcss.com/docs/sass-reference
  */
 
-// 嵌套规则 Nested Rules
+// 嵌套规则 Nested Rules 
 
 #a {
 	.a-1{
-		background:yellow
+		background:yellow;
+		.child{
+			font-size:12px;
+			.child-1{
+				color:red
+			}
+		}
+
 	}
 }
 
+
 // 引用父选择符： &
 // & 在编译时将被替换为父选择符，输出到 CSS 中
-a {
+
+// .hello.active{color}
+.hello {
   font-weight: bold;
   text-decoration: none;
+  &.active{
+  	color:black
+  }
+  &:visited{}
   &:hover { text-decoration: underline; }
   body.firefox & { font-weight: normal; }
 }

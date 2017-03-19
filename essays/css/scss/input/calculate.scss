@@ -8,16 +8,12 @@
  // 变量Variables: $--------------------------------------------
  // Variables begin with dollar signs, and are set like CSS properties:
 
-$width: 5em;
+$width: 5em; 
 
 #main {
   width: $width;
 }
 
-/*
- * 布尔运算
- *SassScript 支持布尔值做 and、or 和 not 运算。
- */
 
  // 圆括号
 // 圆括号可以用来改变运算顺序
@@ -45,7 +41,7 @@ p.#{$name} {
 如果数值是另一个数学表达式的一部分
 */
 p {
-  font: 10px/8px;             // 纯 CSS，不是除法运算
+  font: 10px/8px;           // 纯 CSS，不是除法运算
   $width: 1000px;
   width: $width/2;            // 使用了变量，是除法运算
   width: round(1.5)/2;        // 使用了函数，是除法运算
@@ -61,12 +57,12 @@ p {
   font: #{$font-size}/#{$line-height};
 }
 
-// 颜色运算
+/* 颜色运算 */
 p {
-  color: #010203 + #040506;
+  color: #123123+ #040506;
 }
 
- // 在文本字符串中，#{} 形式的表达式可以被用来在字符串中添加动态值：
+ //在文本字符串中，#{} 形式的表达式可以被用来在字符串中添加动态值：
  //空值会被视作空字符串：
  
 
