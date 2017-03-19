@@ -7,3 +7,8 @@
 
 
 ===> less ==> scss 
+
+
+
+
+Promise.all(promise1,promise2,promise2)
