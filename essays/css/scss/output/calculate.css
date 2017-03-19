@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* 运算--------------------------------------------
+ * 所有数据类型都支持等式运算 (== and !=)
+ * SassScript 支持数字的标准运算（加 +、减 -、乘 *、除 /和取模 %），
+ * 数字也支持关系运算（<、>、<=、>=）， 等式运算（==、!=）被所有数据类型支持。
+ * reference==> http://sass.bootcss.com/docs/sass-reference
+ */
+#main {
+  width: 5em; }
+
+/*
+ * 布尔运算
+ *SassScript 支持布尔值做 and、or 和 not 运算。
+ */
+p {
+  width: 9em; }
+
+p.foo {
+  border-color: blue; }
+
+p {
+  width: 9px; }
+
+/*除法运算
+在以下三种情况中，/ 会被解释为除法运算。 这就覆盖了绝大多数真正使用除法运算的情况。 这些情况是：
+如果数值或它的任意部分是存储在一个变量中或是函数的返回值。
+如果数值被圆括号包围。
+如果数值是另一个数学表达式的一部分
+*/
+p {
+  font: 10px/8px;
+  width: 500px;
+  width: 1;
+  height: 250px;
+  margin-left: 9px; }
+
+p {
+  font: 12px/30px; }
+
+p {
+  color: #050709; }
+
+p:before {
+  content: "I ate 15 pies!"; }
+
+p:before {
+  content: "I ate  pies!"; }
+
+/*# sourceMappingURL=calculate.css.map */

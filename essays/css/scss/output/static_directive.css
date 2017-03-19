@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/*
+ * 指令
+ * @Author slashhuang
+ * Sass 支持所有 CSS3 的 @ 规则， 以及一些 Sass 专属的规则，也被称为“指令（directives）”。
+ */
+/* @import
+// Sass 扩展了 CSS 的 @import 规则，让它能够引入 SCSS 和 Sass 文件
+*/
+/*
+ * 基本规则
+ * @Author slashhuang
+ * reference==> http://sass.bootcss.com/docs/sass-reference
+ */
+#a .a-1 {
+  background: yellow; }
+
+a {
+  font-weight: bold;
+  text-decoration: none; }
+  a:hover, .hoverlink {
+    text-decoration: underline; }
+  body.firefox a {
+    font-weight: normal; }
+
+/* 嵌套属性 CSS has quite a few properties that are in "namespaces;"*/
+.funky {
+  font-family: fantasy;
+  font-size: 30em;
+  font-weight: bold;
+  border-radius: 20px;
+  border-color: red; }
+
+/**
+ * 嵌套 @import
+ */
+/* @media
+*  @media directives in Sass behave just like they do in plain CSS
+*/
+.father .sidebar {
+  width: 300px; }
+  @media screen and (orientation: landscape) {
+    .father .sidebar {
+      width: 500px; }
+      .father .sidebar .hello {
+        font-size: 20px; } }
+
+/* @extend
+ * The @extend directive avoids these problems by telling Sass 
+ * that one selector should inherit the styles of another selector
+ */
+.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd; }
+  .error.intrusion, .intrusion.seriousError, .intrusion.criticalError {
+    background-image: url("/image/hacked.png"); }
+
+.seriousError, .criticalError {
+  border-width: 3px; }
+
+/* Extending Complex Selectors ---------*/
+.comment a.user:hover, .comment .user.hoverlink {
+  font-weight: bold; }
+
+/* Multiple Extends---------*/
+.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd; }
+
+.attention, .seriousError, .criticalError {
+  font-size: 3em;
+  background-color: #ff0; }
+
+.seriousError, .criticalError {
+  border-width: 3px; }
+
+/* Chaining Extends---------*/
+.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd; }
+
+.seriousError, .criticalError {
+  border-width: 3px; }
+
+.criticalError {
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%; }
+
+/*# sourceMappingURL=static_directive.css.map */

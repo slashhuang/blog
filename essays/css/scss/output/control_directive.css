@@ -1,0 +1,65 @@
+/*
+ * Control Directives
+ */
+/* @if -------
+ * The @if directive takes a SassScript expression 
+ * and uses the styles nested beneath it 
+ * if the expression returns anything other than false or null:
+ */
+p {
+  border: 1px solid; }
+
+p {
+  color: green; }
+
+/* @for -------
+ * The @for directive repeatedly outputs a set of styles. 
+ * For each repetition, a counter variable is used to adjust the output
+ */
+/*from ... through*/
+.item-1 {
+  width: 2em; }
+
+.item-2 {
+  width: 4em; }
+
+.item-3 {
+  width: 6em; }
+
+/*from ... to*/
+.item-to-1 {
+  width: 2em; }
+
+.item-to-2 {
+  width: 4em; }
+
+/* @each -------
+ * The @each rule has the form @each $var in <list>
+ */
+.puma-icon {
+  background-image: url("/images/puma.png"); }
+
+.sea-slug-icon {
+  background-image: url("/images/sea-slug.png"); }
+
+.egret-icon {
+  background-image: url("/images/egret.png"); }
+
+.salamander-icon {
+  background-image: url("/images/salamander.png"); }
+
+/* @while -------
+ * The @while directive takes a SassScript expression 
+ * and repeatedly outputs the nested styles 
+ * until the statement evaluates to false
+ */
+.item-6 {
+  width: 12em; }
+
+.item-4 {
+  width: 8em; }
+
+.item-2 {
+  width: 4em; }
+
+/*# sourceMappingURL=control_directive.css.map */

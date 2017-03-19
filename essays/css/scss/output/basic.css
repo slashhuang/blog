@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/*
+ * 基本规则
+ * @Author slashhuang
+ * reference==> http://sass.bootcss.com/docs/sass-reference
+ */
+#a .a-1 {
+  background: yellow; }
+
+a {
+  font-weight: bold;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+  body.firefox a {
+    font-weight: normal; }
+
+/* 嵌套属性 CSS has quite a few properties that are in "namespaces;"*/
+.funky {
+  font-family: fantasy;
+  font-size: 30em;
+  font-weight: bold;
+  border-radius: 20px;
+  border-color: red; }
+
+/*# sourceMappingURL=basic.css.map */
