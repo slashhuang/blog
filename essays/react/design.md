@@ -163,7 +163,62 @@
 
 > 事实上，上面的实现已经非常类似于react-redux中的connect的功能了。
 
+> 下面我们从另一个角度:代码设计,来看待React组件
 
+## 定义Plugins接口实现插件体系
+
+> 作为前端开发而言，UI的更新是一个平常的需求。
+
+> 所以一个React组件，不仅需要兼顾功能，还必须兼顾UI。
+
+> 我们通过约定Plugins接口，来实现组件UI更新的动态性。
+
+```javascript
+   class FirstComponent extends Component{
+        constructor(){
+            super()
+            this.state={ text: 'hello world' }
+        }
+        renderPlugins(){
+            let { Plugins } = this.props;
+            let dataModel = {...this.props,...this.state};
+            return do{
+                if(typeof Plugins=='function'){;
+                    <Plugins  dataModel={dataModel}/>
+                }else{
+                    Plugins;
+                }
+            }
+        }
+        clickFunc(){
+            this.setState({text:'I am clicked'})
+        }
+        render(){
+            return <div onClick={()=>this.clickFunc()}>
+                    {this.state.text}
+                    {Plugins && this.renderPlugins() }
+                </div>
+        }
+     };
+```
+> 如上，我们预留了了Plugins接口。
+
+> 当开发者需要修正UI样式的时候，可以定义Plugins侵入React组件。
+
+> 在props更新的同时，Plugins也会被notify,从而完成和父级组件的UI同步。
+
+> 这边要提下do expression，对于React组件中的条件运算非常有效。
+
+
+## 结语
+
+> 这篇文章洋洋洒洒都写了快200行了，感谢大家能够读到这里。
+
+> 之后我将会分享几期关于Promise、co、generator、V8的小研究。
+
+> 大家可以关注我的知乎和专栏。
+
+> 完。
 
 
 
