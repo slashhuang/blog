@@ -51,23 +51,36 @@
 
 > 那么，问题来了，怎么在不修改源代码的基础上为组件增加功能呢？
 
-## 高阶组件HOC
+## 高阶组件HOC来丰富组件功能
 
 ### 一个简单的定义
 
 > 高阶组件的概念来自于高阶函数，一般指的是函数参数为ReactComponent class，函数的return值也为ReactComponent class。
 
-### 引入HOC
-
-> 我们引入HOC来为刚刚的组件的点击事件增加钩子:event hook
+> 一个基本的高阶组件写法如下
 
 ```javascript
-    //hook事件 增加程序动态性
+    const HOC = 参数=>(目标组件)=>{
+        return ()=>{
+            目标组件 + 参数增加的功能
+        }
+    }
+```
+> 接下来，我们采用HOC来丰富组件的props+state+事件函数
+
+### 引入HOC来丰富组件事件的功能
+
+> 如下的例子稍加改进即可实现一个无侵入的打点系统
+
+```javascript
     import _ from 'lodash';
     const highOrderFunc=methodHook=>InnerComponent=>{
         _.forIn(methodHook, (hookFn, key)=>{
-            let cache = InnerComponent.prototype[key]
-            InnerComponent.prototype[key]=function(...args){
+            //引用目标组件原型
+            let ref = InnerComponent.prototype;
+            let cache = ref[key];
+            //修改原型，hook我们自定义的功能
+            ref[key]=function(...args){
                 cache.apply(this,args)
                 hookFn()
             }
@@ -84,7 +97,7 @@
             this.setState({text:'I am clicked'})
         }
         render(){
-            return <div onClick={::this.clickFunc} id='test'>{this.state.text}</div>
+            return <div onClick={::this.clickFunc}>{this.state.text}</div>
         }
      };
     render(<FirstComponent />,document.getElementById('root'))
@@ -92,18 +105,65 @@
 
 > 当我们做了如上操作后，点击id='test'的节点，即可在控制台打印hook click called。
 
-> 于是利用这个HOC，我们就渐渐实现了一个日志系统，把console.log替换成打点逻辑的话，
+> 如果把highOrderFunc的第一个函数console.log替换成打点，即可实现非侵入式的react打点系统。
 
-> 就可以轻松实现非侵入式的前端打点系统。
+> 这里需要说明的是，代码中的@符号是ES7的decorator语法，这里不多做介绍。
 
-> 这里需要说明的是，代码中的@符号是ES7的decorator语法，采用它是为了让代码更加简洁。
+> 这个例子演示的是采用HOC对React组件嵌入了事件逻辑。
+
+> 下面我们继续写代码，采用HOC来实现props和state的侵入。
 
 
 ### 引入HOC修改dataModel
 
-> 上一个例子，我们采用HOC对React组件嵌入了事件逻辑。
+```javascript
+    const highOrderFunc1=actions=>InnerComponent=>{
+        class Inst1 extends Component{
+            componentDidMount(){
+                 let _ref = this.refs.InnerComponent;
+                 //侵入事件
+                 _ref.__proto__.clickFunc = function(...args){
+                    this.props.Update();
+                    let { text } = this.state;
+                    this.setState({text:`add Text ${text}`})
+                 }
+            }
+            render(){
+                //侵入props数据
+                this.props = {
+                    ...this.props,
+                    ...actions
+                };
+                return <InnerComponent ref='InnerComponent' {...this.props}/>
+            }
+        }
+        return Inst1;
+    }
+    @highOrderFunc1({
+        'Update':()=>{console.log('Update')}
+    })
+    class FirstComponent extends Component{
+        constructor(){
+            super()
+            this.state={ text: 'hello world' }
+        }
+        clickFunc(){
+            this.setState({text:'I am clicked'})
+        }
+        render(){
+            return <div onClick={()=>this.clickFunc()}>{this.state.text}</div>
+        }
+     };
+```
+> 如上，我们通过高阶组件，实现了对FirstComponent组件的事件和props侵入。
 
-> 在这个基础上，我们再采用HOC来实现数据模型props和state的侵入。
+> 第一个参数是actions用来丰富this.props，第二个参数则是我们的目标组件。
+
+> 通过HOC夺取原来组件的控制权，之后的逻辑组合即完成了对组件功能和数据的极大丰富。
+
+> 事实上，上面的实现已经非常类似于react-redux中的connect的功能了。
+
+
 
 
 
