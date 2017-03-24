@@ -1,0 +1,75 @@
+/* 运算--------------------------------------------
+ * 所有数据类型都支持等式运算 (== and !=)
+ * SassScript 支持数字的标准运算（加 +、减 -、乘 *、除 /和取模 %），
+ * 数字也支持关系运算（<、>、<=、>=）， 等式运算（==、!=）被所有数据类型支持。
+ * reference==> http://sass.bootcss.com/docs/sass-reference
+ */
+
+ // 变量Variables: $--------------------------------------------
+ // Variables begin with dollar signs, and are set like CSS properties:
+
+$width: 5em; 
+
+#main {
+  width: $width;
+}
+
+
+ // 圆括号
+// 圆括号可以用来改变运算顺序
+p {
+  width: (1em + 2em) * 3;
+}
+
+// 插值Interpolation: #{}
+$name: foo;
+$attr: border;
+p.#{$name} {
+  #{$attr}-color: blue;
+}
+
+
+ // 数字运算
+ p {
+  width: 1px + 8px;
+}
+
+/*除法运算
+在以下三种情况中，/ 会被解释为除法运算。 这就覆盖了绝大多数真正使用除法运算的情况。 这些情况是：
+如果数值或它的任意部分是存储在一个变量中或是函数的返回值。
+如果数值被圆括号包围。
+如果数值是另一个数学表达式的一部分
+*/
+p {
+  font: 10px/8px;           // 纯 CSS，不是除法运算
+  $width: 1000px;
+  width: $width/2;            // 使用了变量，是除法运算
+  width: round(1.5)/2;        // 使用了函数，是除法运算
+  height: (500px/2);          // 使用了圆括号，是除法运算
+  margin-left: 5px + 8px/2px; // 使用了加（+）号，是除法运算
+}
+
+// 如果你希望在纯 CSS 中使用变量和 /， 你可以用 #{} 包住变量。 例如：
+
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}
+
+/* 颜色运算 */
+p {
+  color: #123123+ #040506;
+}
+
+ //在文本字符串中，#{} 形式的表达式可以被用来在字符串中添加动态值：
+ //空值会被视作空字符串：
+ 
+
+p:before {
+  content: "I ate #{5 + 10} pies!";
+}
+$value: null;
+p:before {
+  content: "I ate #{$value} pies!";
+}

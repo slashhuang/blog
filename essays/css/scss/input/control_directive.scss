@@ -1,0 +1,86 @@
+/*
+ * Control Directives
+ */
+
+/* @if -------
+ * The @if directive takes a SassScript expression 
+ * and uses the styles nested beneath it 
+ * if the expression returns anything other than false or null:
+ */
+p {
+  @if 1 + 1 == 2 { border: 1px solid;  }
+  @if true {background-image:url('')}
+  @if 5 < 3      { border: 2px dotted; }
+  @if null       { border: 3px double; }
+}
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+
+
+/* @for -------
+ * The @for directive repeatedly outputs a set of styles. 
+ * For each repetition, a counter variable is used to adjust the output
+ */
+
+
+/*from ... through*/ 
+@for $i from 1 through 3 { //1,2,3
+  .item-#{$i} { width: 2em * $i; }
+}
+
+/*from ... to*/
+@for $i from 1 to 3 {  //1,2
+  .item-to-#{$i} { width: 2em * $i; }
+}
+
+/* @each -------
+ * The @each rule has the form @each $var in <list>
+ */
+
+@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+  }
+}
+
+
+/* @while -------
+ * The @while directive takes a SassScript expression 
+ * and repeatedly outputs the nested styles 
+ * until the statement evaluates to false
+ */
+
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} { width: 2em * $i; }
+  $i: $i - 2;
+}
+
+$i:6;
+@for $i from 1 through $i{
+  .col-#{$i}{
+    width:$i/6*100%
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

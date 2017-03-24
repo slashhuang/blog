@@ -1,0 +1,54 @@
+/*
+ * 基本规则
+ * @Author slashhuang
+ * reference==> http://sass.bootcss.com/docs/sass-reference
+ */
+
+// 嵌套规则 Nested Rules 
+
+#a {
+	.a-1{
+		background:yellow;
+		.child{
+			font-size:12px;
+			.child-1{
+				color:red
+			}
+		}
+
+	}
+}
+
+
+// 引用父选择符： &
+// & 在编译时将被替换为父选择符，输出到 CSS 中
+
+// .hello.active{color}
+.hello {
+  font-weight: bold;
+  text-decoration: none;
+  &.active{
+  	color:black
+  }
+  &:visited{}
+  &:hover { text-decoration: underline; }
+  body.firefox & { font-weight: normal; }
+}
+
+/* 嵌套属性 CSS has quite a few properties that are in "namespaces;"*/
+
+.funky {
+  font: {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+  border: {
+  	radius:20px;
+  	color:red;
+  }
+}
+
+// 注释规则  Comments: /* */ and //
+
+

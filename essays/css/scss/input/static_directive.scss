@@ -1,0 +1,121 @@
+/*
+ * 指令
+ * @Author slashhuang
+ * Sass 支持所有 CSS3 的 @ 规则， 以及一些 Sass 专属的规则，
+ * 也被称为“指令（directives）”。
+ */
+
+// @ 规则和指令
+
+
+/* @import
+// Sass 扩展了 CSS 的 @import 规则，让它能够引入 SCSS 和 Sass 文件
+*/
+// @import "basic";  //.scss .sass 
+
+
+/**
+ * 嵌套 @import
+ */
+.example {
+  @import "basic.scss";
+}
+
+/* @media
+*  @media directives in Sass behave just like they do in plain CSS
+*/
+.father{
+	.sidebar {
+		  width: 300px;
+		  @media screen and (orientation: landscape) {
+		  	 width: 500px;
+		  	.hello{
+				font-size:20px
+
+		  	}
+		  }
+		}
+}
+
+/* @extend
+ * The @extend directive avoids these problems by telling Sass 
+ * that one selector should inherit the styles of another selector
+ */
+.error {
+  border: 1px #f00;
+  //Other rules that use .error will work for .seriousError as well.
+  &.intrusion {
+	  background-image: url("/image/hacked.png");
+	}
+}
+.seriousError {
+  @extend .error;
+}
+/* Extending Complex Selectors ---------*/
+.hoverlink {
+  @extend a:hover;
+    // text-decoration: underline;
+}
+a:hover {
+  text-decoration: underline;
+}
+.comment a.user:hover {
+  font-weight: bold;
+}
+
+/* Multiple Extends---------*/
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.attention {
+  font-size: 3em;
+  background-color: #ff0;
+}
+.seriousError {
+  // ===>  
+  @extend .error;
+  @extend .attention;
+  border-width: 3px;
+}
+
+/* Chaining Extends---------*/
+
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+
+.criticalError {
+  @extend .seriousError;
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

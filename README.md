@@ -11,6 +11,14 @@
 #### [7.nodejs+react+redux架构](https://github.com/slashhuang/blog/blob/master/essays/node_fe_architechture.md)
 #### [8.JS设计模式漫谈](https://github.com/slashhuang/blog/blob/master/essays/design-patterns.md)
 #### [9.nodeJS 2016年官方调查报告](https://github.com/slashhuang/blog/blob/master/essays/nodejs-2016.md)
+
+
+
+### 个人原创音乐分享列表
+#### [1.五月天知足英文版](https://github.com/slashhuang/blog/blob/master/essays/band/%E3%80%90%E5%8E%9F%E5%88%9B%E3%80%91%E6%8B%A5%E6%8A%B1%E8%8B%B1%E6%96%87%E7%89%88.md)
+
+
+
 ### 技术分享PPT列表
 
 #### [1.redux技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/ppt-for-redux.key?raw=true)

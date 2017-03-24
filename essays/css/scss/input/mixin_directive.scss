@@ -1,0 +1,84 @@
+/*
+ * Mixin Directives
+ */
+
+/* @mixin -------
+ * Mixins allow you to define styles that 
+ * can be re-used throughout the stylesheet 
+ * without needing to resort to non-semantic classes like .float-left. 
+ */
+
+@mixin large-text {
+  font: {
+    family: Arial;
+    size: 20px;
+    weight: bold;
+  }
+  color: #ff0000;
+}
+
+/* Including a Mixin: @include -----
+
+ * Mixins are included in the document with the @include directive.
+ */
+ .page-title {
+  @include large-text;
+  padding: 4px;
+  margin-top: 10px;
+}
+
+@mixin silly-links {
+  a {
+    color: blue;
+    background-color: red;
+  }
+}
+
+@include silly-links;
+
+
+
+
+@mixin compound {
+  @include highlighted-background;
+  @include header-text;
+}
+
+@mixin highlighted-background { background-color: #fc0; }
+@mixin header-text { font-size: 20px; }
+.test{
+  @include compound
+}
+
+
+// Arguments
+@mixin sexy-border($color, $width) {
+  border: {
+    color: $color;
+    width: $width;
+    style: dashed;
+  }
+}
+
+p { @include sexy-border(blue, 10px); }
+
+
+
+$b:box-shadow;
+@mixin box-shadow($shadows...) {
+  -moz-#{$b}: $shadows;
+  -webkit-#{$b}: $shadows;
+  #{$b}: $shadows;
+}
+
+.shadows {
+  @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999);
+}
+
+
+
+
+
+
+
+
