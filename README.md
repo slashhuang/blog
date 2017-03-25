@@ -3,7 +3,7 @@
 ### blog 列表
 
 #### [1.webpack编译流程漫谈](https://github.com/slashhuang/blog/issues/1)
-#### [2.Angular2下的开发架构初探](https://github.com/slashhuang/blog/issues/2)
+#### [2.react组件设计之HOC和插件机制](https://github.com/slashhuang/blog/blob/master/essays/react/design.md)
 #### [3.前端工程化下的组件设计原则漫谈](https://github.com/slashhuang/blog/issues/5)
 #### [4.词法作用域与函数式编程语言](https://github.com/slashhuang/blog/issues/8)
 #### [5.koa2设计思想及源码分析](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
