@@ -119,6 +119,150 @@
 
 #### 定义prototype.then和prototype.catch
 
+> then和catch要做两件事，第一件是存储microtask,另一件是如果状态不为pending要autoRun。
+
+> 由于then和catch只是一个处理fulfill，一个处理reject而已，而且then如果有第二个参数也可以兼容catch的处理逻辑。
+
+> 所以我把then和catch的逻辑归为一类，并定义[nextThenCatchSymbol]方法来处理。
+
+```javascript
+class SuperPromise{
+	constructor(executor){
+		if(typeof executor!=='function'){
+			throw new TypeError(`${executor} is not a function`)
+		};
+		let resolveFn = val=>this[resolveSymbol](val);
+		let rejectFn = error=>this[rejectSymbol](error);
+		defineProperty(this,stateSymbol,pendingState)
+		try{
+			executor(resolveFn,resolveFn)
+		}catch(err){
+			rejectFn(err)
+		}
+	}
+	[resolveSymbol](val){
+		defineProperty(this,stateSymbol,fulfillState);
+		this.PromiseVal =  val;
+		this.RunLater()
+	}
+	[rejectSymbol](error){
+		defineProperty(this,stateSymbol,rejectState);
+		this.PromiseVal =  error;
+		this.RunLater()
+	}
+	[nextThenCatchSymbol](fnArr,type){
+		//将then和catch方法归为一类
+		let method = 'resolve';
+		let resolveFn = fnArr[0];
+		let rejectFn = fnArr[1];
+		if(type=='catch'){
+			method = 'catch';
+			rejectFn = fnArr[0];
+		};
+		return new Promise((res,rej)=>{})
+	}
+	then(fn,fn1){
+		return this[nextThenCatchSymbol]([fn,fn1],'resolve')
+	}
+	catch(fn){
+		return [nextThenCatchSymbol]([fn],'reject')
+	}
+}
+
+```
+> 如上[nextThenCatchSymbol]返回了一个空的Promise，没什么用处。
+
+> 回头看一开始我们定义的数据结构，必须给这个空Promise定义接口，同时还要添加microtask.
+
+> 于是改造这个function如下
+
+```javascript
+[nextThenCatchSymbol](fnArr,type){
+		let method = 'resolve';
+		let resolveFn = fnArr[0];
+		let rejectFn = fnArr[1];
+		if(type=='catch'){
+			method = 'catch';
+			rejectFn = fnArr[0];
+		};
+		//返回新的Promise,pending状态
+		let newPromise =  new SuperPromise((resolve,reject)=>{});
+		//添加对外接口
+		newPromise[resolveFnSymbol]=function(val){
+			let nextValue = resolveFn(val);
+			if(nextValue instanceof SuperPromise){
+				nextValue.then(val=>{
+					this[resolveSymbol](val)
+				})
+			}else{
+				this[resolveSymbol](nextValue)
+			}
+		}
+		newPromise[rejectFnSymbol]=function(val){
+			let nextValue = rejectFn(val);
+			if(nextValue instanceof SuperPromise){
+				nextValue.catch(val=>{
+					this[rejectSymbol](val)
+				})
+			}else{
+				this[rejectSymbol](nextValue)
+			}
+		}
+		//在上个Promise内部注册microtask
+		this.microtask = {
+			newPromise 
+		};
+		//microtask异步执行
+		this.RunLater();
+		return newPromise
+
+```
+
+> 如上我们手动给newPromise指定了两个接口[rejectFnSymbol],[resolveFnSymbol],
+
+> 我们在上个Promise实例上挂了microtask，并立即执行了Runlater。
+
+> 写到这里，大部分的数据结构已经完成，接下来就是Runlater方法的实现。
+
+```javascript
+	RunLater(){
+		if(!this.microtask){
+			return 
+		}
+		let state =  this[stateSymbol];
+		let PromiseVal = this.PromiseVal;
+		let { newPromise } = this.microtask;
+		let hookFn= '';
+		if(state == fulfillState || state == rejectState){
+			hookFn = state == fulfillState?resolveFnSymbol:rejectFnSymbol;
+			RunLater(()=>newPromise[hookFn](PromiseVal))
+		}
+	}
+
+```
+> RunLater的逻辑很简单，就是根据当前的promise的情况来决定是执行resolve还是reject的逻辑而已。
+
+
+### 阶段性总结
+
+> 写到这边，大部分的逻辑都已经实现完毕。
+
+> 具体的细节并不多了，但是再写下去恐怕会让大家对主逻辑混乱。
+
+> 有兴趣看我的源码实现的同学可以看[Promise实现](https://github.com/slashhuang/V8-promise/blob/master/promise.js)
+
+
+## 结语
+
+> 对于具体的技术用文字来描述，总是缺乏可感性。
+
+> 希望本文对大家理解Promise有裨益。
+
+> 下面我将继续关于co,出一个自己的实现方案，欢迎关注我的知乎和专栏。
+
+> 完。
+
+
 
 
 
