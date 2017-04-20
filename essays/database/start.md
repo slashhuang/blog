@@ -18,6 +18,8 @@ mysql采用table和结构化的sql语句来处理数据，
 mongoDB采用类JSON的documents来存储数据。
 在mongoDB的查询语句中，相关信息由于存储在一块，所以查询速率非常快。
 
+> Collections do not enforce document structure.
+
 mongoDB采用动态数据模型schema，这意味着不需要预先定义表的数据类型和字段名。
 当mongoDB需要更新文档documents的时候，可以轻松增加新的字段名或者删除旧有的字段名。
 
@@ -101,4 +103,3 @@ MongoDB可以轻松实现分布式数据中心和高延展性。
 这在mysql时代是一件巨大的工程问题。
 当你的数据体量达到海量级别的时候，Mysql需要严谨和个性化的工程工作
 才能完成较好的数据扩展和迁移工作。
-
