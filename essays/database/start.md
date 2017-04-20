@@ -1,13 +1,10 @@
-## 新手学数据库
+## 比对mongodb和mysql
 
 ## 数据库主流分类
 
 - Nosql database 非关系型数据库
 
 - RDBMS (Relational Database Management System)关系型数据库
-
-## 比对mongodb和mysql
-
 
 ### mysql概述
 
@@ -32,16 +29,12 @@ mongoDB具备高扩展性和延展性和自动分片机制(auto-sharding)。
 
 ### mongodb和mysql术语和概念比对
 
-```bash
-
-    MySQL	MongoDB
-
-    Table	Collection
-    Row	    Document
-    Column	Field
-    Joins	Embedded documents, linking
-
-```
+| MySQL | MongoDB |
+| ------| ------ |
+| Table | Collection |
+| Row | Document |
+| Column | Field |
+| Joins | Embedded documents, linking |
 
 ### mongodb和mysql特性对比
 
