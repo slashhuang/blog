@@ -15,14 +15,64 @@ JS是一种非常注重OOP的语言，它遵循prototype的方式而不是传统
 [js和java构造函数对比](./assets/js_java_constructor.png)
 [js和java构造函数动态性对比](./assets/js_java_flexible_constructor.png)
 
-
-
 [面向对象采用class和prototype的区别](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model#Class-based_vs._prototype-based_languages)
+
+
+特性
+
+
+1. Encapsulation 封装==> `private 、public method`等等
+2. Composition, inheritance, and delegation (组合、继承、代理) ==> `extends 、protptye`
+3. Polymorphism (多态) ==> `apple.eat() 、 banana.eat()`
+4. Open recursion (使用同一个对象的其他方法)==>`this self等`
+
+[wikipedia oop](https://en.wikipedia.org/wiki/Object-oriented_programming)
+
 
 
 问题2： 如何通过构造函数的方式创建一个拥有属性和方法的对象? 
 
+```js
+
+	function Person(name,age){
+	  this.name = name;
+	  this.age = age
+	}
+	Person.prototype.slogan = function(){
+	  console.log('My name is : ' + this.name);
+	}
+	var p = new Person('liyang',18);
+	p.slogan();
+
+```
 问题3： prototype 是什么？有什么特性 
+
+> Every JavaScript object has a prototype. 
+  The prototype is also an object. 
+  All JavaScript objects inherit their properties and methods from their prototype.
+
+每一个JS对象都有原型，原型是一个对象。
+所有的JS对象都从原型链里继承属性和方法。  
+
+字面量创建对象的原型链
+
+```
+	var o = {a: 1};
+	//原型链 o ---> Object.prototype ---> null
+
+	var b = ['yo', 'whadup', '?'];
+	//原型链 b ---> Array.prototype ---> Object.prototype ---> null
+
+	function f() {
+	  return 2;
+	}
+	//原型链 f ---> Function.prototype ---> Object.prototype ---> null
+
+```
+
+
+
+
 
 问题4：画出如下代码的原型图
 
