@@ -39,11 +39,16 @@
 
 [3.Node.js知识体系概述下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/node-share.key?raw=true)
 
+## 技术教程列表
+
+[scss全解析](./essays/css/scss)
+
+[mongoDB对比mysql数据库入门](./essays/database/start.md)
+
 ## 其他领域作品列表
 
 [1.五月天知足英文版](./essays/band/【原创】拥抱英文版.md)
 
-
-##### [16年8月前的博客>](http://slashhuang.github.io/)
+## [16年8月前的博客>](http://slashhuang.github.io/)
 
 
