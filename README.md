@@ -2,8 +2,6 @@
 
 ## 技术blog 列表
 
----
-
 ### webpack
 
 [1.webpack编译流程漫谈](https://github.com/slashhuang/blog/issues/1)
@@ -33,8 +31,6 @@
 [1.babel知识体系漫谈](./essays/tech-diary/babel.md)
 [2.babel stage语法总结](./essays/tech-diary/babel杂谈.md)
 
----
-
 ## 技术分享PPT列表
 
 [1.redux技术分享ppt下载链接](./ppt-share/ppt-for-redux.key?raw=true)
@@ -43,14 +39,10 @@
 
 [3.Node.js知识体系概述下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/node-share.key?raw=true)
 
----
-
 ## 其他领域作品列表
 
 [1.五月天知足英文版](./essays/band/【原创】拥抱英文版.md)
 
-
----
 
 ##### [16年8月前的博客>](http://slashhuang.github.io/)
 
