@@ -12,10 +12,11 @@ JS是一种非常注重OOP的语言，它遵循prototype的方式而不是传统
 2. JS没有类和实例的明显区分。它只有`object`对象。一个原型继承的语言有`原型对象`的概念,`原型对象`是
 新对象创建时候的模板对象(template object)。一个对象可以随意控制自己的`property`方式。
 
+[面向对象采用class和prototype的区别](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model#Class-based_vs._prototype-based_languages)
+
 ![js和java构造函数对比](./assets/js_java_constructor.png)
 ![js和java构造函数动态性对比](./assets/js_java_flexible_constructor.png)
 
-[面向对象采用class和prototype的区别](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model#Class-based_vs._prototype-based_languages)
 
 
 特性
