@@ -24,42 +24,40 @@
           <div class='J_GoTop'></div>
     </div>
     <script>
-        var Test = function(){
-          this.name = 'slashhuang'
-        };
-        Test.prototype.bark=function() {
-            alert(this.name)
-        };
-        var inst = new Test()
 
-        var GoTop = function(setUp) {
-          this.ct = setUp.ct;
-          this.target = setUp.target;
+
+      var GoTop1 = function(ct,target) {
+          this.ct  = ct;
+          this.target = target;
+          // this.bindEvent = function
           this.bindEvent();
-          this.target.html(this.createNode())
-        }
-        GoTop.prototype.bindEvent = function() {
-          // click event
+          // this.toString() ==> Object.prototype.toString
+          // [].forEach ==> Array.prototype.forEach
+          this.target.html(this.createNode());
+      };
+      GoTop1.prototype={
+        bindEvent:function() {
+          var that = this;
+          //滚动事件
+          $(window).scroll(function(event) {
+             let needShow = $(window).scrollTop() > window.innerHeight;
+             if(needShow){
+              //this ？？？？ 
+               that.target.removeClass('hide')
+             }else{
+              that.target.addClass('hide')
+             }
+          });
+          //点击事件
           this.target.click(function(){
               $(window).scrollTop(0);
-          });
-          // scroll event
-          $(window).scroll(()=>{
-            if($(window).scrollTop() >  window.innerHeight){
-              this.target.removeClass('hide');
-            }else{
-              this.target.addClass('hide');
-            };            
           })
+        },
+        createNode:function() {
+           return '<span>回到顶部</span>'
         }
-        GoTop.prototype.createNode = function() {
-          return `<span class="go">回到顶部</span>`
-        }
-        var GoTopInst = new GoTop({
-          ct:$('#GoTopEvent'),
-          target:$('.J_GoTop')
-        })
-
+      }
+      new GoTop1($('#container'),$('.J_GoTop'))
     </script>
   </body>
 </html>
