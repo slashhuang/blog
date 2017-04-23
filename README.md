@@ -14,10 +14,6 @@
 
 [3.JS设计模式漫谈](./essays/design-patterns.md)
 
-### 词法作用域
-
-[4.词法作用域与函数式编程语言](https://github.com/slashhuang/blog/issues/8)
-
 ### Node.js
 
 [1.koa2设计思想及源码分析](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
@@ -30,6 +26,10 @@
 
 [1.babel知识体系漫谈](./essays/tech-diary/babel.md)
 [2.babel stage语法总结](./essays/tech-diary/babel杂谈.md)
+
+### 词法作用域
+
+[1.词法作用域与函数式编程语言](https://github.com/slashhuang/blog/issues/8)
 
 ## 技术分享PPT列表
 
