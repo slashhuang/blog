@@ -3,17 +3,62 @@
   <head>
     <meta charset="utf-8">
     <title>面向对象学习</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style type="text/css">
+      .J_GoTop{
+        position: fixed;
+        right:20px;
+        bottom:50px;
+      }
+      #container{
+        height: 1000px
+      }
+      .hide{
+        display: none
+      }
+    </style>
   </head>
   <body>
-    面向对象学习
+    <div id='container'>
+          面向对象学习
+          <div class='J_GoTop'></div>
+    </div>
     <script>
         var Test = function(){
           this.name = 'slashhuang'
         };
+        Test.prototype.bark=function() {
+            alert(this.name)
+        };
         var inst = new Test()
 
-
+        var GoTop = function(setUp) {
+          this.ct = setUp.ct;
+          this.target = setUp.target;
+          this.bindEvent();
+          this.target.html(this.createNode())
+        }
+        GoTop.prototype.bindEvent = function() {
+          // click event
+          this.target.click(function(){
+              $(window).scrollTop(0);
+          });
+          // scroll event
+          $(window).scroll(()=>{
+            if($(window).scrollTop() >  window.innerHeight){
+              this.target.removeClass('hide');
+            }else{
+              this.target.addClass('hide');
+            };            
+          })
+        }
+        GoTop.prototype.createNode = function() {
+          return `<span class="go">回到顶部</span>`
+        }
+        var GoTopInst = new GoTop({
+          ct:$('#GoTopEvent'),
+          target:$('.J_GoTop')
+        })
 
     </script>
   </body>
