@@ -25,6 +25,7 @@
 ### babel
 
 [1.babel知识体系漫谈](./essays/tech-diary/babel.md)
+
 [2.babel stage语法总结](./essays/tech-diary/babel杂谈.md)
 
 ### 词法作用域
