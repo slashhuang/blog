@@ -8,19 +8,19 @@
 
 ### 前端工程化及JS设计模式
 
-[1.前端工程化下的组件设计原则漫谈](https://github.com/slashhuang/blog/issues/5)
+[1.react组件设计之HOC和插件机制](./essays/react/design.md)
 
-[2.react组件设计之HOC和插件机制](https://github.com/slashhuang/blog/blob/master/essays/react/design.md)
-
-[3.JS设计模式漫谈](./essays/design-patterns.md)
+[2.JS设计模式漫谈](./essays/design-patterns.md)
 
 ### Node.js
 
-[1.koa2设计思想及源码分析](https://github.com/slashhuang/blog/blob/master/essays/koa.md)
+[1.koa2设计思想及源码分析](./essays/koa.md)
 
 [2.nodejs+react+redux架构](./essays/node_fe_architechture.md)
 
-[3.nodeJS 2016年官方调查报告](./essays/nodejs-2016.md)
+[3.Promise实现](./essays/nodejs/Promise.md)
+
+[4.nodeJS 2016年官方调查报告](./essays/nodejs-2016.md)
 
 ### babel
 
@@ -36,7 +36,7 @@
 
 [1.redux技术分享ppt下载链接](./ppt-share/ppt-for-redux.key?raw=true)
 
-[2.webpack+gulp4自动化技术分享ppt下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/webpack-babel-gulp.key?raw=true)
+[2.webpack+gulp4自动化技术分享ppt下载链接](./ppt-share/webpack-babel-gulp.key?raw=true)
 
 [3.Node.js知识体系概述下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/node-share.key?raw=true)
 
