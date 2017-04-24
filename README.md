@@ -8,9 +8,9 @@
 
 ### 前端工程化及JS设计模式
 
-[1.react组件设计之HOC和插件机制](./essays/react/design.md)
+[1.react组件设计之HOC和插件机制](./essays/js/react/design.md)
 
-[2.JS设计模式漫谈](./essays/design-patterns.md)
+[2.JS设计模式漫谈](./essays/js/design-patterns.md)
 
 ### Node.js
 
@@ -24,9 +24,9 @@
 
 ### babel
 
-[1.babel知识体系漫谈](./essays/tech-diary/babel.md)
+[1.babel知识体系漫谈](./essays/js/babel/babel.md)
 
-[2.babel stage语法总结](./essays/tech-diary/babel杂谈.md)
+[2.babel stage语法总结](./essays/js/babel/babel杂谈.md)
 
 ### 词法作用域
 
@@ -38,7 +38,7 @@
 
 [2.webpack+gulp4自动化技术分享ppt下载链接](./ppt-share/webpack-babel-gulp.key?raw=true)
 
-[3.Node.js知识体系概述下载链接](https://github.com/slashhuang/blog/blob/master/ppt-share/node-share.key?raw=true)
+[3.Node.js知识体系概述下载链接](./ppt-share/node-share.key?raw=true)
 
 ## 技术教程列表
 
