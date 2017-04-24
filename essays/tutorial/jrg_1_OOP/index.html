@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>面向对象学习</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style type="text/css">
+      .J_GoTop{
+        position: fixed;
+        right:20px;
+        bottom:50px;
+      }
+      #container{
+        height: 1000px
+      }
+      .hide{
+        display: none
+      }
+    </style>
+  </head>
+  <body>
+    <div id='container'>
+          面向对象学习
+          <div class='J_GoTop'></div>
+    </div>
+    <script>
+
+
+      var GoTop1 = function(ct,target) {
+          this.ct  = ct;
+          this.target = target;
+          // this.bindEvent = function
+          this.bindEvent();
+          // this.toString() ==> Object.prototype.toString
+          // [].forEach ==> Array.prototype.forEach
+          this.target.html(this.createNode());
+      };
+      GoTop1.prototype={
+        bindEvent:function() {
+          var that = this;
+          //滚动事件
+          $(window).scroll(function(event) {
+             let needShow = $(window).scrollTop() > window.innerHeight;
+             if(needShow){
+              //this ？？？？ 
+               that.target.removeClass('hide')
+             }else{
+              that.target.addClass('hide')
+             }
+          });
+          //点击事件
+          this.target.click(function(){
+              $(window).scrollTop(0);
+          })
+        },
+        createNode:function() {
+           return '<span>回到顶部</span>'
+        }
+      }
+      new GoTop1($('#container'),$('.J_GoTop'))
+    </script>
+  </body>
+</html>
