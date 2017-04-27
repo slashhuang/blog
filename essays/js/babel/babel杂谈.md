@@ -16,7 +16,7 @@
 #### 指数函数简写形式(Exponentiation operator transform)
 > 包括async to generator,trailing commas，这个提案已经由stage-3移至stage-4。
 
-```javascript 
+```javascript
     let squared = 2 ** 3;// same as: Math.pow(2,3)
     let a **= 2; // same as: Math.pow(a,3)
 ```
@@ -40,10 +40,44 @@
     // Rest properties
     let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
     console.log(x); // 1
-    console.log(z); // { a: 3, b: 4 }    
+    console.log(z); // { a: 3, b: 4 }
 ```
 ### 插件preset之 babel-preset-stage-2
-> stage-2主要是class语法的提案，这块大家应该很熟悉，就不赘述了。
+
+#### 引入decorator处理transform-decorators-legacy
+
+```javascript
+    @decorator
+    class Bork {}
+```
+#### 转换class属性 Class properties transform
+
+```javascript
+
+    class Bork {
+        //Property initializer syntax
+        instanceProperty = "bork";
+        boundFunction = () => {
+          return this.instanceProperty;
+        }
+        //Static class properties
+        static staticProperty = "babelIsCool";
+        static staticFunction = function() {
+          return Bork.staticProperty;
+        }
+    }
+    let myBork = new Bork;
+    //Property initializers are not on the prototype.
+    console.log(myBork.prototype.boundFunction); // > undefined
+
+    //Bound functions are bound to the class instance.
+    console.log(myBork.boundFunction.call(undefined)); // > "bork"
+
+    //Static function exists on the class.
+    console.log(Bork.staticFunction()); // > "babelIsCool"
+
+```
+
 
 ### 插件preset之 babel-preset-stage-1
 
@@ -63,7 +97,7 @@
     console.log(new A()) ;// {a:1}
     console.log(A()) //1
 ```
-#### transform-export-extensions 
+#### transform-export-extensions
 
 > ES6/7 export import混用体系
 > 这块内容语法基本和阮一峰老师的ES6语法module部分的文末保持一致。
@@ -97,7 +131,7 @@
     }}
   </div>
 ```
-#### transform-function-bind 
+#### transform-function-bind
 
 > 这一块是动态this绑定的语法糖
 > 在react的事件场景或者改变this的场景，语法非常简洁。
@@ -105,7 +139,7 @@
     const box = {
         weight: 2,
         getWeight() { return this.weight; },
-    };  
+    };
     console.log(box.getWeight()); // prints '2'
     console.log({ weight: 10 }::box.getWeight()); // prints '10'
 ```
