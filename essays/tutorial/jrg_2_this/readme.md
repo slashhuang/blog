@@ -261,7 +261,7 @@ A的的原型链中是否存在 B.prototype
 	- 第一层原型链指向对应的参数
 	var s = {a:1}
 	var p = Object.create(s)
-	==> {} __proto__:{a:} __proto__ Object.prototype
+	==> {} __proto__:{a:1} __proto__ Object.prototype
 ```
 
 
@@ -323,7 +323,7 @@ A的的原型链中是否存在 B.prototype
 	   this.age = age
 	}
 
-	//继承
+	//继承 ==> 简单来说 构造函数的prototype指向某一个 需要的继承的对象即可
 	Male.prototype = new Person()
 
 	var ruoyu = new Male('若愚', '男', 27);
