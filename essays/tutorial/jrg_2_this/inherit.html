@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原型链相关问题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		o = new Object();
+		o.prop = 'exists';
+		o.hasOwnProperty('prop');             // returns true
+		o.hasOwnProperty('toString');         // returns false
+		o.hasOwnProperty('hasOwnProperty');   // returns false
+		
+	</script>
+</body>
+</html>

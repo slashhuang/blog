@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原型链相关问题</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*--------------第7题----*/
+		function Person(name){
+		    this.name = name;
+		}
+		Person.prototype.sayName = function(){
+		    console.log('My name is :' + this.name);
+		}
+		var p = new Person("若愚")
+		p.sayName();
+		/*--------------第8题----*/
+		console.log(p.toString())
+		/*--------------第9题----*/
+		var str = 'ahbbccdeddddfg';
+		String.prototype.getMostOften=function() {
+			var rawStr = this.toString()
+			var length = this.length
+			var obj = {}
+			var biggest = {
+				str:'',
+				count:0
+			}
+			for(var index=0;index<length;index++){
+				var val = rawStr[index]
+				if(obj[val]){
+					obj[val] +=1
+				}else{
+					obj[val]=1
+				}
+				if(obj[val]>biggest.count){
+					biggest.count = obj[val]
+					biggest.str = val
+				}
+			}
+			return biggest
+		}
+		var ch = str.getMostOften();
+		console.log(ch); //d , 因为d 出现了5次
+	</script>
+</body>
+</html>
