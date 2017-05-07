@@ -2,9 +2,46 @@
 
 ### 1. this 相关问题
 
+function s(){
+	this.a='a'
+} 
+1. arguments 参数数组
+2. this指向
+3. return 的值
+
+this的指向问题4种情况 ==> 函数调用绑在一起的
+
+1. 构造函数调用
+
+new S() ==>this指向创建的对象本身 {a:'a'}
+
+2. 方法调用 method,property
+
+var p = {
+	s:function(){
+		console.log(this)
+	}
+}
+p.s() ==> this指向调用方
+
+3. apply、call的调用
+
+p.s.call({a:2},1,2,3)
+p.s.apply({a:2},[1,2,3])
+
+4. 函数调用
+
+var cache = p.s;
+cache()==> this指向全局对象
+p.s() ==> this指向P
+
+
 问题1： apply、call 、bind有什么作用，什么区别
 
----apply和call---: 动态设定函数执行时候的this和arguments数组
+---apply和call---: 
+1.动态设定函数执行时候的this
+2.设定arguments数组
+
 ---bind---: 预设函数的this和部分参数
 
 
@@ -19,7 +56,7 @@
 	  alert(this.firstName + ": hi!")
 	}
 	john.sayHi = func
-	john.sayHi()
+	john.sayHi() ==>方法调用
 
 ```
 
@@ -30,16 +67,16 @@
 	func() 
 	function func() { 
 	  alert(this)
-	}
+	} //函数调用==> 全局对象
 ```
 
 问题4：下面代码输出什么
 
 ```js
 	document.addEventListener('click', function(e){
-    console.log(this);
+    console.log(this); //指向document
     setTimeout(function(){
-	        console.log(this);
+	        console.log(this); //函数调用=>指向全局对象
 	    }, 200);
 	}, false);
 	
@@ -55,7 +92,7 @@
 	function func() { 
 	  alert( this.firstName )
 	}
-	func.call(john)
+	func.call(john) //apply、call调用,this指向apply、call的第一个参数
 	
 ```
 
@@ -65,9 +102,10 @@
 	
 	var module= {
 	  bind: function(){
+	  	var that =this;
 	    $btn.on('click', function(){
 	      console.log(this) //this指什么
-	      this.showMsg();
+	      that.showMsg();
 	    })
 	  },
 	  
@@ -79,6 +117,8 @@
 ```
 
 ### 2. 原型链相关问题
+
+prototype 原型
 
 问题7：有如下代码，解释Person、 prototype、__proto__、p、constructor之间的关联。
 
@@ -112,8 +152,15 @@
 
 A instanceof B
 
-> The instanceof operator tests whether an object in its prototype chain has the prototype property of a constructor.
-一个对象的原型链中是否存在 B.prototype
+> The instanceof operator tests whether an object 
+> in its prototype chain has the prototype property of a constructor.
+A的的原型链中是否存在 B.prototype
+
+
+```js
+	var s = {}
+	s instanceof Object
+```
 
 ```js
 	function isInstanceOf(obj, fn){
@@ -141,8 +188,39 @@ A instanceof B
 
 问题11：继承有什么作用?
 
-- 优化代码结构
-- 优化内存空间
+
+```js
+	class A extends B{
+		//A继承B
+	}
+	但是JS里面的话class语法并不是所有的都支持
+
+	用prototype来实现继承
+	A.prototype = B ==>让A的实例继承B的属性、方法等
+```
+
+```js
+	Male extends Human
+	- 优化代码结构和对象关系
+
+	用ptototype来实现的话还可以
+	- 优化内存空间
+````
+
+
+```js
+	Person、 prototype、proto、p、constructor之间的关联不懂。。很迷糊。
+
+	Person 是一个函数
+	var s = new Person() ==> 构造函数调用
+	//实例的原型链，用__proto__来指向 ==>构造函数的prototype
+	s.__proto__ ==> Person.prototype
+
+	__proto__  是key ==>prototype 是value
+
+
+
+```
 
 [mdn继承文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
@@ -174,7 +252,18 @@ A instanceof B
 ```
 问题13： Object.create 有什么作用？兼容性如何？
 
-> The Object.create() method creates a new object with the specified prototype object and properties.
+> The Object.create() method creates a new object with 
+> the specified prototype object and properties.
+
+```js
+	- Object.create作用
+	- 创建一个新的对象
+	- 第一层原型链指向对应的参数
+	var s = {a:1}
+	var p = Object.create(s)
+	==> {} __proto__:{a:} __proto__ Object.prototype
+```
+
 
 [mdn object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 
@@ -189,12 +278,23 @@ A instanceof B
  whether the object has the specified property 
  as own (not inherited) property.
 
+ ```js
+
+ 	var s = {a:1}
+ 	s.hasownproperty('a') //true
+ 	s.hasownproperty('toString') //false
+ 	//检查该属性是否是 自有属性(不在原型连里面)
+
+ ```
+
 使用方式: obj.hasOwnProperty(prop)
 [hasownproperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
 
 问题15：如下代码中call的作用是什么?
 
 ```js
+	//问题15：如下代码中call的作用是什么?
+
 	function Person(name, sex){
 	    this.name = name;
 	    this.sex = sex;
@@ -208,22 +308,23 @@ A instanceof B
 问题16： 补全代码，实现继承 
 
 ```js
+	// 补全代码，实现继承 
 	function Person(name, sex){
 	    // todo ...
 	}
 
-	Person.prototype.getName = function(){
-	    // todo ...
+	Person.prototype.printName = function(){
+	  	 console.log(this.name)  
 	};    
 
 	function Male(name, sex, age){
-	   //todo ...
+	   this.name = name
+	   this.sex = sex
+	   this.age = age
 	}
 
-	//todo ...
-	Male.prototype.getAge = function(){
-	    //todo ...
-	};
+	//继承
+	Male.prototype = new Person()
 
 	var ruoyu = new Male('若愚', '男', 27);
 	ruoyu.printName();
