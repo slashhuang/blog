@@ -80,10 +80,16 @@
 	Slider.prototype.addEvent = function() {
 		var that = this
 		this.arrowRight.on('click',function() {
+			if(that.animating){
+				return
+			}
 			var index = that.calculateIndex(true)
 			that.slider(index)
 		})
 		this.arrowLeft.on('click',function() {
+			if(that.animating){
+				return
+			}
 			var index = that.calculateIndex(false)
 			that.slider(index)
 		})
@@ -103,24 +109,15 @@
 		return this.currentIndex
 	}
 	Slider.prototype.slider = function(index) {
-		this.imgWrapper.css({
-			'left':index * (-300) +'px'
+		var that = this
+		this.animating = true
+		this.imgWrapper.animate({
+               'left':index * (-300) +'px'
+         }, function() {
+         	that.animating = false
 		})
  	}
  	new Slider($('.img-wrapper'))
-
-
-
-
-
-
-
-
-
-
 </script>
-
-
-
 </body>
 </html>
