@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lazyload</title>
+	<style>
+    ul,li{
+      list-style:none;
+    }
+    .container{
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .container:after{
+    	content: '';
+    	display: block;
+    	clear: both;
+    }
+    .container li{
+      float: left;
+      margin: 10px 10px;
+    }
+    .container li img{
+      width: 380px;
+      height: 380px;
+    }
+    p{
+      float: left;
+    }
+  </style>
+</head>
+<body>
+首屏优化 ==> 加载更快
+节省用户流量 
+节省网站流量
+避免图片加载失败 
+<ul class="container"></ul>
+	<!-- 不用关心第一个 -->
+	<script type="text/javascript">
+		//创建[0,1,2...15];
+		var range_16=Array.from(Array(16).keys());
+		var imgPlaceholder = "https://resource.iwjw.com/iwjw-pc/img/common/placeholder.png";
+		var imgListDOM = range_16.map(function (value,index) {
+			return ['<li>',
+					'<img data-src="http://cdn.jirengu.com/book.jirengu.com/img/'+(value+1)+'.jpg"',
+					' src="'+imgPlaceholder+'"/>',
+					'</li>'
+					].join('');
+		});
+		var containerDom = document.querySelectorAll('.container')[0];
+		containerDom.innerHTML= imgListDOM.join('');
+	</script>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//懒加载核心逻辑
+// 		==> 
+// 1、事件层面:  
+// 	scroll 监听 懒加载
+// 	图片的onload加载成功
+		var Lazyload  = function(img) {
+			this.target = img
+			this.addEvent()
+		}
+		Lazyload.prototype.addEvent = function() {
+			var that = this
+			var target = this.target
+			$(window).on('scroll',function() {
+				//检查一下是否加载当前图片
+				//检查当前图片是否在需要的显示的区域
+				//滚动高度
+				var scrollTop = $(document).scrollTop()
+				var windowHeight = screen.availHeight;
+				var offsetTop = target.offset().top
+				var height = target.height()
+				//什么时候加载图片
+				var condition1 = offsetTop+height>scrollTop 
+				var condition2 = offsetTop < scrollTop + windowHeight
+				if(condition1 && condition2){
+					//加载图片
+					that.triggerLoad()
+				}
+			})
+		}
+		//图片加载
+		Lazyload.prototype.triggerLoad= function() {
+			var target = this.target
+			var realImg = target.attr('data-src')
+			var img = new Image()
+			img.onload=function() {
+				target.attr('src',realImg)
+			}
+			img.src = realImg
+		}
+		$('.container').find('img').each(function() {
+			new Lazyload($(this))
+		})
+
+	</script>	
+</body>
+</html>
