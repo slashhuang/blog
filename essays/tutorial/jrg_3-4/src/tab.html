@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html><head>
 	<title>tab组件学习</title>
 	<style>
 		*{
@@ -15,104 +13,70 @@
 		.tab-header {
             border-bottom: 1px solid #ccc;
         }
-        .tab-header.clear-fix:after{
-           content:"";
-    	   display: block;
-           clear:both;
+        .tab-header li{
+			display: inline-block;
+			padding:5px 20px;
         }
-        .tab-header [class*="tab-item"] {
-            float: left;
-            color: brown;
-            border: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-            padding: 10px 20px;
-            cursor: pointer;
+        .tab-header li.active{
+        	color:red;
         }
-        .tab-header .active {
-        	position: relative;
-        	bottom: -1px;
-            border: 1px solid #ccc;
-            border-bottom-color: #fff;
-            border-radius: 4px 4px 0 0;
-            color: #333;
+        .tab-body li.active{
+			display: block
         }
-        .tab-body{
-        	padding: 20px 10px;
-        }
+         .tab-body li{
+			display: none
+        }    
 	</style>
 </head>
 <body>
-	<div id='root'></div>
+	<div id="root">
+		<ul class='tab-header'>
+			<li data-index='0' class='active'>
+				tab1
+			</li>
+			<li data-index='1'>tab2</li>
+			<li data-index='2'>tab3</li>
+		</ul>
+		<ul class='tab-body'>
+			<li data-index='0' class='active'>
+				tab1内容
+			</li>
+			<li data-index='1' hello='world'>tab2内容</li>
+			<li data-index='2'>tab3内容</li>
+		</ul>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		// 创建基本的数据模型
-		var TabBaseConfig = {
-			/*存储tab
-			 *每一项{ tabName:'tab1',tabContent:'html字符串' }
-			 */
-			tabList:[],
-			//首屏展示的tab
-			indexTab:0
-		};
-		var TabFactorty = function(tabConfig) {
-			var tabConfig = Object.assign({},TabBaseConfig,tabConfig);
-			//tab数组
-			this.tabList = tabConfig.tabList;
-			//当前激活的tab 序数
-			this.activeTab =  tabConfig.indexTab;
-			//渲染的目标dom节点
-			this.targetDom = null;
-		};
-		TabFactorty.prototype.layoutRender=function(){
-			var tabListString = this.tabList.map(function(tab,index){
-				return ['<div class="tab-item-'+index+'"">',tab.tabName,'</div>'].join('')
-			}).join("");
-			return ['<div class="tab-header clear-fix">',tabListString ,
-						'</div><div class="tab-body"></div>'].join('')
-		};
-		//获取元素
-		TabFactorty.prototype.getElement=function(className){
-			return targetDom.getElementsByClassName(className)[0];
-		} 
-		//渲染对应序数号的元素样式
-		TabFactorty.prototype.indexRender = function(index){
-			var targetTab = this.tabList[index]; 
-			var tabBody = this.getElement("tab-body");
-			var tabHeader = this.getElement("tab-item-"+index);
-			var previouseTab =  this.getElement("tab-item-"+this.activeTab);
-			tabBody.innerHTML = targetTab['tabContent'];
-			tabHeader.classList.add('active');
-			if(index!=this.activeTab){
-				previouseTab.classList.remove('active');
-				this.activeTab = index;
-			}
+		var Tab = function(headerDom,bodyDom) {
+			this.headerDom = headerDom.find('li')
+			this.bodyDom = bodyDom.find('li')
+			this.addEvent() //方法调用
 		}
-		//挂载事件
-		TabFactorty.prototype.events=function(){
-			var that = this;
-			that.tabList.forEach(function(tab,index){
-				that.getElement('tab-item-'+index).addEventListener('click',function(){
-					that.indexRender(index);
+		Tab.prototype.addEvent = function() {
+			var that = this
+			this.headerDom.on('click',function() {
+					var index = $(this).data('index')
+					// 当前的tab高亮,内容区进行切换
+					that.highLight(index)
+					that.bodySwitch(index)
 				})
-			})
-		};
-		//程序入口
-		TabFactorty.prototype.renderTo=function(targetDom){
-			targetDom.innerHTML = this.layoutRender();
-			this.targetDom = targetDom;
-			this.indexRender(this.activeTab)
-			this.events(targetDom);
-		};
-		//测试
-		var targetDom = document.getElementById('root');
-		var tabList = [{ 
-			tabName:'tab1',tabContent:'tab1' 
-		},{ 
-			tabName:'tab2',tabContent:'tab2' 
-		},];
-		// 生成实例
-		var tabContainer = new TabFactorty({ tabList:tabList });
-		// 渲染到dom节点
-		tabContainer.renderTo(targetDom)
+		}
+		Tab.prototype.highLight = function(index) {
+			var headerLi = this.headerDom
+			headerLi.removeClass('active')
+			headerLi.eq(index).addClass('active')
+		}
+		Tab.prototype.bodySwitch = function(index) {
+			var bodyLi = this.bodyDom
+			bodyLi.removeClass('active')
+			bodyLi.eq(index).addClass('active')
+		}
+		new Tab($('.tab-header'),$('.tab-body'))
+
+
+
+
+		
 	</script>
 </body>
 </html>
