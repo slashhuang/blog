@@ -1,0 +1,261 @@
+<html><head>
+  <title>dialog demo</title>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<style>
+
+.dialog .dialog-overlay {
+	width:100%;
+	height:100%;
+	opacity: 0.5;
+	background:#000;
+
+	position:absolute;
+	top:0; left:0;
+	z-index:3000;
+}
+
+
+.dialog .dialog-box {
+  position:absolute;
+	z-index:5000;
+  left: 50%;
+  top: 30%;
+  margin-left: -164px;
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+	background:#eee;
+	width:328px;
+}
+.dialog .dialog-header {
+    padding: 10px 19px;
+    color: #fff;
+    background: #676666;
+}
+.dialog .dialog-header h3{
+    margin: 0;
+    font-size: 14px;
+}
+.dialog .dialog-header .btn-close{
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-family: fantasy;
+  cursor: pointer;
+}
+.dialog .dialog-content {
+	padding:10px;
+	margin:13px;
+	color:#666;
+	font-size:11px;
+}
+.dialog .dialog-footer{
+  text-align: center;
+}
+a.btn {
+  position: relative;
+  text-align: center;
+  background-color: #e33100;
+  display: inline-block;
+  width: 50px;
+  padding: 5px 0 6px;
+  margin: 2px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+a.btn:hover {
+	background-color: #c33100;
+}
+
+</style>
+
+</head>
+<body>
+
+<button id="open1"> 鎵撳紑1</button>
+<button id="open2"> 鎵撳紑2</button>
+<button id="open3"> 鎵撳紑3</button>
+<button id="open4"> 鎵撳紑4</button>
+<button id="open5"> 鎵撳紑5</button>
+<button id="close">鍏抽棴</button>
+
+<script>
+
+
+/*
+  鐢ㄦā鍧楀畾涔夌殑鏂瑰紡灏佽鍒涘缓浜嗕竴涓璞★紝鎶� new Modal 鐨勮繃绋嬪皝瑁呭埌妯″潡閲岋紝杩欐牱浣跨敤鑰呭彲浠ョ洿鎺ラ€氳繃
+  Dialog.open()鍘昏皟鐢ㄥ嵆鍙�
+*/
+
+
+
+var Dialog = (function(){
+
+  function Modal(){
+    this.createDialog();
+    this.bindEvent();
+  }
+
+  Modal.prototype = {
+    defaultOpts: {
+      title: '',
+      message: '',
+      isShowCloseBtn: true,
+      isShowConfirmBtn: false,
+      onClose: function(){},
+      onConfirm: function(){}
+    },
+
+    open: function(opts){
+      this.setOpts(opts);
+      console.log(this.opts);
+      this.setDialog();
+      this.showDialog();
+    },
+
+    close: function(){
+      this.hideDialog();
+    },
+
+    setOpts: function(opts){
+      if(typeof opts === 'string'){
+         this.opts = $.extend({}, this.defaultOpts, {message: opts});
+      }else if (typeof opts === 'object'){
+         this.opts = $.extend({}, this.defaultOpts, opts);
+      }
+    },
+
+    bindEvent: function(){
+      var _this = this;
+      _this.$dialog.find('.btn-close').on('click', function(e){
+        e.preventDefault();
+        _this.opts.onClose();
+        _this.hideDialog();
+      });
+      _this.$dialog.find('.btn-confirm').on('click', function(e){
+        e.preventDefault();
+        _this.opts.onConfirm();
+        _this.hideDialog();
+      });
+    },
+
+
+    //鍒涘缓Dialog
+    createDialog: function(){
+      var tpl = '<div class="dialog" style="display:none">'
+                + '<div class="dialog-overlay"></div>'
+                + '<div class="dialog-box">'
+                +   '<div class="dialog-header"><h3></h3><span class="btn-close">x</span></div>'
+              	+   '<div class="dialog-content">'
+              	+ '</div>'
+                + '<div class="dialog-footer">'
+                + '  <a href="#" class="btn btn-close">鍙栨秷</a>'
+                + '  <a href="#" class="btn btn-confirm">纭畾</a>'
+                + '</div>'
+                + '</div>'
+                +'</div>';
+      this.$dialog = $(tpl);
+      $('body').append(this.$dialog);
+    },
+
+    //鏍规嵁鍙傛暟璁剧疆 Dialog 鏍峰紡鍜屽唴瀹�
+    setDialog: function(){
+      var $dialog = this.$dialog;
+      if(!this.opts.title){
+        $dialog.find('.dialog-header').hide();
+      }else{
+        $dialog.find('.dialog-header').show();
+      }
+      if(!this.opts.isShowCloseBtn){
+        $dialog.find('.dialog-footer .btn-close').hide();
+      }else{
+        $dialog.find('.dialog-footer .btn-close').show();
+      }
+      if(!this.opts.isShowConfirmBtn){
+        $dialog.find('.btn-confirm').hide();
+      }else{
+        $dialog.find('.btn-confirm').show();
+      }
+      $dialog.find('.dialog-header h3').text(this.opts.title);
+      $dialog.find('.dialog-content').html(this.opts.message);
+    },
+
+    showDialog: function(){
+      this.$dialog.show();
+    },
+
+    hideDialog: function(){
+      this.$dialog.hide();
+    }
+  };
+  return new Modal();
+})();
+
+
+
+
+
+$('#open1').on('click',function(){
+  Dialog.open('hello, 杩欓噷鏄ゥ浜鸿胺');
+});
+
+$('#open2').on('click',function(){
+  Dialog.open('<a href="http://jirengu.com">楗ヤ汉璋�</a>');
+});
+
+$('#open3').on('click',function(){
+  Dialog.open({
+    title: '娆㈣繋鏉ュ埌楗ヤ汉璋�',
+    message: 'hello',
+    isShowCloseBtn: true,
+    isShowConfirmBtn: true,
+    onClose: function(){
+      alert('close')
+    },
+    onConfirm: function(){
+      alert('纭畾');
+    }
+  });
+});
+
+var tpl = '<ul><li>鍒楄〃1</li><li>鍒楄〃2</li><li>鍒楄〃1</li><li>鍒楄〃1</li></ul>';
+$('#open4').on('click',function(){
+  Dialog.open({
+    title: '娆㈣繋鏉ュ埌楗ヤ汉璋�',
+    message: tpl,
+    isShowCloseBtn: true,
+    isShowConfirmBtn: true,
+    onClose: function(){
+      alert('close')
+    },
+    onConfirm: function(){
+      alert('纭畾');
+    }
+  });
+});
+$('#open5').on('click',function(){
+  Dialog.open({
+    title: '娆㈣繋鏉ュ埌楗ヤ汉璋�',
+    message: 'hello',
+    isShowCloseBtn: false,
+    isShowConfirmBtn: false
+  });
+});
+
+
+  $('#close').on('click', function(){
+    Dialog.close();
+  });
+
+
+  //Dialog.open('hello');
+
+
+
+
+</script><div class="dialog" style="display: none;"><div class="dialog-overlay"></div><div class="dialog-box"><div class="dialog-header"><h3>娆㈣繋鏉ュ埌楗ヤ汉璋�</h3><span class="btn-close">x</span></div><div class="dialog-content"><ul><li>鍒楄〃1</li><li>鍒楄〃2</li><li>鍒楄〃1</li><li>鍒楄〃1</li></ul></div><div class="dialog-footer">  <a href="#" class="btn btn-close">鍙栨秷</a>  <a href="#" class="btn btn-confirm">纭畾</a></div></div></div>
+
+
+</body></html>
