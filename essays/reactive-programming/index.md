@@ -2,7 +2,7 @@
 
 reactive programming算是继functional programming之后比较潮的编程理念了。
 
-根据国外某些教授的公开演讲说明，reactive programming一般具备以下几个要素:
+reactive programming一般具备以下几个要素:
 
 1. event-driven
 2. scalable
