@@ -18,3 +18,11 @@ require(['starting','shim-0'],function(start,shim) {
 	console.log('终于加载完了')
 });
 console.log("starting");
+
+
+// global ==> [ {
+//     "./test/inc"
+//     ,callback
+// }   ]
+   
+

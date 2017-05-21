@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " rm -rf src/amd/dist && r.js -o build.js"
+    "start": " rimraf  src/amd/dist && r.js -o build.js"
   },
   "author": "slashhuang",
   "license": "ISC",
   "devDependencies": {
-    "requirejs": "^2.3.2"
+    "requirejs": "^2.3.2",
+    "rimraf": "^2.6.1"
   }
 }

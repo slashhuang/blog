@@ -1870,7 +1870,6 @@ var requirejs, require, define;
      * Creates the node for the load command. Only used in browser envs.
      */
     req.createNode = function (config, moduleName, url) {
-        debugger;
         var node = config.xhtml ?
                 document.createElementNS('http://www.w3.org/1999/xhtml', 'html:script') :
                 document.createElement('script');
@@ -2057,6 +2056,7 @@ var requirejs, require, define;
      * name.
      */
     define = function (name, deps, callback) {
+        debugger;
         var node, context;
 
         //Allow for anonymous modules
