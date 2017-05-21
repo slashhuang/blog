@@ -14,7 +14,7 @@ require.config({
     		deps: ['shim-1']
     	}
     },
-    baseUrl:'src'
+    baseUrl:'src';
  });
 debugger;
 //  猜测===> require.js全局配置 window.require

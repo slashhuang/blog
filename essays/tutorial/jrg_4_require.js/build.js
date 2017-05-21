@@ -7,7 +7,7 @@
 
 
 ({
-    baseUrl: "./src/amd/",
+    baseUrl: "./src/amd/src",
 
     /*单文件编译*/
     // name:"./main",
@@ -26,7 +26,7 @@
     //The directory path to save the output. If not specified, then
     //the path will default to be a directory called "build" as a sibling
     //to the build file. All relative paths are relative to the build file.
-    dir: "./src/amd/dist",
+    dir: "./src/amd/src/dist",
 
     keepBuildDir: false,
     //If shim config is used in the app during runtime, duplicate the config

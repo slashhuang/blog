@@ -1,0 +1,1 @@
+define(["./test/inc"],function(n){return console.log("inc",n),{inc:"inc",getData:function(){return n.add1()}}});

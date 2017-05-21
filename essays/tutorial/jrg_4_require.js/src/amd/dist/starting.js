@@ -1,1 +1,0 @@
-console.log("loading starting done "),define(["./test/inc"],function(n){return console.log("loading starting done "),n.add1(),n.add1(),{inc:"inc"}});
