@@ -14,13 +14,17 @@ require.config({
     		deps: ['shim-1']
     	}
     },
-    baseUrl:'src'
+    baseUrl:'src';
  });
 //  猜测===> require.js全局配置 window.require
 require(['starting','shim-0'],function(start,shim) {
     console.log(start.getData())
 	console.log('终于加载完了')
 });
+
+define('dd',['underscore'],function (_) {
+    _.reduce()
+})
 
 // logic ===> amd模块 define([],()=>{}) 
             // ==> 加载非amd规范

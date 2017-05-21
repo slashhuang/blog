@@ -872,6 +872,7 @@ var requirejs, require, define;
                             //onError is set, use that.
                             if ((this.events.error && this.map.isDefine) ||
                                 req.onError !== defaultOnError) {
+                                debugger;
                                 try {
                                     exports = context.execCb(id, factory, depExports, exports);
                                 } catch (e) {
@@ -910,6 +911,7 @@ var requirejs, require, define;
 
                         if (this.map.isDefine && !this.ignore) {
                             defined[id] = exports;
+                            console.log(defined)
 
                             if (req.onResourceLoad) {
                                 var resLoadMaps = [];
@@ -1231,7 +1233,7 @@ var requirejs, require, define;
             //Remove the listeners once here.
             removeListener(node, context.onScriptLoad, 'load', 'onreadystatechange');
             removeListener(node, context.onScriptError, 'error');
-
+            console.log('----'+node.getAttribute('data-requiremodule'))
             return {
                 node: node,
                 id: node && node.getAttribute('data-requiremodule')

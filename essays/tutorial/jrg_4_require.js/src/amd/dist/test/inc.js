@@ -1,1 +1,1 @@
-define([],function(){var n=1,e={add1:function(){return n++},getRes:function(){return n}};return e});
+console.log("loading test/inc done "),define([],function(){var n=1,e={add1:function(){return n++},getRes:function(){return n}};return e});

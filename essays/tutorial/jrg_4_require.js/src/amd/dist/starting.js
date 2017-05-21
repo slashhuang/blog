@@ -1,1 +1,1 @@
-define(["./test/inc"],function(e){return console.log(e.getRes()),e.add1(),console.log(e.getRes()),e.add1(),console.log(e.getRes()),{inc:"inc"}});
+console.log("loading starting done "),define(["./test/inc"],function(n){return console.log("loading starting done "),n.add1(),n.add1(),{inc:"inc"}});

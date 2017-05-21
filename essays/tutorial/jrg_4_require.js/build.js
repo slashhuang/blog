@@ -1,6 +1,7 @@
 /*
  *  built by slashhuang 
  * http://www.svlada.com/require-js-optimization-part2/
+ * sample build.js https://github.com/requirejs/r.js/blob/master/build/example.build.js
  */ 
 
 
