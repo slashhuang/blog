@@ -3,7 +3,7 @@
  */
 var path =require('path');
 module.exports = {
- 	watch:true,
+ 	watch:true, //watch mode观察模式
  	context:path.resolve(__dirname,'./webpack_js'),
  	entry:"./main.js",
  	output:{
@@ -11,3 +11,4 @@ module.exports = {
  		filename:'[name].js'
  	}
 }
+

@@ -63,47 +63,24 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-
-
-
-
-document.body.style.cssText = "color:green;font-size:20px;"
+module.exports = {
+    a:1
+}
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-
-
-
-
-setTimeout(()=>{
-	document.body.innerHTML+='<div style="color:white">\
-		1.5秒后 2.js 来了</div>';
-	document.body.style.background = 'purple'
-},1500)
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var test2 = __webpack_require__(0);
+alert(JSON.stringify(test2)) //{a:1}
 
-/*
- * built by slashhuang
- * 17/2/18
- */
-var _1 = __webpack_require__(0);
-var _2 = __webpack_require__(1);
-let body = document.body
-let cache = body.innerHTML;
-body.innerHTML  = `${cache} I am requirejs main`
 
 
 /***/ })

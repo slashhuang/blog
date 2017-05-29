@@ -8,8 +8,9 @@
 
 npm install -g <packagename>
 
-### 题目2： package.json 有什么作用？
+### 题目2： package.json 清单文件 bower.json  manifest.json 有什么作用？
 
+npm ==> node package manager
 > 配合npm使用，用来定义模块包，主要包括以下几点:
 
 > 定义模块包的依赖管理[devDependencies/dependencies]、
@@ -56,7 +57,30 @@ npm install -g <packagename>
 [nodejs官方说明](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders)
 
 ## 题目5： npm3与 npm2相比有什么改进？yarn和 npm 相比有什么优势? (选做## 题目)
+a
+|- a1
+|- a2
 
+b
+|- a1
+|- b2
+
+npm install a b --save-dev
+node_modules  npm2时代
+|- a
+|- |- a1
+|- |- a2
+|
+|- b
+|- |- a1
+|- |- b2
+
+npm3改进 flattern
+|— a 
+|- a1
+|- a2
+|- b
+|- b2 
 > npm3和npm2在安装模块的时候，策略上前者优于后者。
 
 > npm2是纯粹的不共享包原则。
@@ -67,11 +91,9 @@ npm install -g <packagename>
 
 [yarn versus npm](https://www.sitepoint.com/yarn-vs-npm/)
 
-
 ## 题目6： 使用 webpack 替换 入门-任务15中模块化使用的 requriejs
 
 [参见webpack_require目录示例代码](./webpack_require)
-
 
 
 ## 题目7： 开发一个 node 命令行天气应用用于查询用户当前所在城市的天气,发布到 npm 上去。可以通过如下方式安装使用(可使用api.jirengu.com里提供的查询天气接口)
