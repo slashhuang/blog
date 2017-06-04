@@ -23,6 +23,45 @@ Person.prototype.sayName = function(){
   return this.name;
 };
 var student = new Person("若愚", 30);
+var student1 = new Person("slash", 30);
+// student1.__proto__ ==== student.__proto__  = true
+name : 若愚，
+age: 30
+| __proto__
+      |-- sayName : fn
+
+name : slash,
+age: 30
+| __proto__
+      |-- sayName : fn      
+
+// 对象字面量
+var s = {
+  name: "ruoyu"
+};
+var s2 = s1 = s;
+s2.name ='1';
+s1.name = '2';
+// XXX.prototype ===> 模板对象
+// 通过工厂函数 
+var factory = function (name) {
+  return {
+    name: name,
+    getName: function(){
+
+    }
+  }
+}
+var s2 = factory('hello world');
+var s3 = factory('d22')
+s2 !== s3  && s3! ==s1 = true
+// 栈 stack    heap堆
+// 基本数据类型 int string number + 引用数据类型 object{ function , Date, Array}等
+// var s1 = factory('ruoyu')
+// var s2 = s1; // s2 和 s1 ===> 指向同一个内存heap地址
+// s2.name ='hello world'; // ===> 改变 内存地址中的数据
+// console.log(s1.name) //  ?
+
 
 
 -------------------------------------------------
@@ -39,7 +78,7 @@ function createPerson(name){
      };
      return person;
 };
-//this指向
+// 开辟新内存
 
 createPerson('jirengu')
 createPerson('jdjid')
@@ -48,7 +87,7 @@ createPerson('jdjid')
 -------------------------------------------------
 
 
-3. 单例模式
+3. 单例模式 singleton单例
 // 匿名函数 
 var People = (function(){
     var instance;
@@ -67,14 +106,14 @@ var People = (function(){
     };
 }());
 
-People.createPeople('jirengu'); //{name:'jirengu'}
-People.createPeople('hello');//{name:'jirengu'}
+People.createPeople('jirengu') === People.createPeople('hello') //true
+//{name:'jirengu'} {name:'jirengu'}
 
 
 -------------------------------------------------
 
 
-4. 混合模式 mixin
+4. 混合模式 mixin  ==> 实现继承
 // 实例1js
 var Person = function(name, age) {
     this.name = name;
@@ -85,24 +124,19 @@ Person.prototype.sayName = function(){
 }
 
 var Student = function(name, age,  score) {
+  // 实例属性实现继承
     Person.call(this, name, age);
-    // this.name= name; this.age= age;
     this.score = score;
 };
-//Student.prototype = Object.create(Person.prototype);
-Student.prototype = create(Person.prototype);
-
-//Object.c
-function create (parentObj){
-    function F(){}
-    F.prototype = parentObj;
-    return new F();
-};
-Student.prototype.sayScore = function(){
-  console.log(this.score);
+// 将Person.prototype挂在Student.prototype的原型链第一层
+// 原型链实现继承
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.getName = function () {
+  return this.name;
 }
 
-var student = new Student("饥人谷", 28, 99);
+new Student() ==> // {name :'',age:'',score:''}
+
 
 
 -------------------------------------------------
@@ -110,7 +144,7 @@ var student = new Student("饥人谷", 28, 99);
 
 5. 模块模式
 
-//通过闭包来实现一个模块
+//通过闭包，实现作用域的隔离来实现一个模块
 var Person = (function(){
 	var name = 'ruoyu';
 	function sayName(){
@@ -120,46 +154,76 @@ var Person = (function(){
 		name: name,
 		sayName: sayName
 	}
-})()
+})();
+name = 'hello world'
 
 
 -------------------------------------------------
 
 
 6. 订阅发布模式 subscribe publish
+$('.btn').on('click', function(event){
+  console.log('clicked')
+}); 
+===> {  'click': [fn]   }
+
+$('.btn').on('mouseover', function(event) {
+  // console.log('clicked')
+  $('.btn').trigger('click',event);
+  ====> [fn].forEach(fn(event));
+})
+// pub/sub
+
+
 
 var EventCenter = (function(){
-  var events = {}; //存储所有的key/value
-  //('hello',function(){})
-  function on(evt, handler){
-  	//events['hello'] = [{
-  	// 	handler:function
-  	// }];
-    events[evt] = events[evt] || [];
-    events[evt].push({
-      handler: handler
-    });
-  }
-  //('hello')
-  function fire(evt, args){
-    if(!events[evt]){
-      return;
+  //我们如何去实现
+  var F = function() {
+    this.eventPool = {}; 
+  };
+  F.prototype.on = function(name, callback) {
+    if(!this.eventPool[name]){
+      this.eventPool[name] = [];
     }
-    for(var i=0; i<events[evt].length; i++){
-      events[evt][i].handler(args);
+    this.eventPool[name].push(callback);
+  };
+  F.prototype.trigger = function (name) {
+    if(!this.eventPool[name]){
+      this.eventPool[name] = [];
     }
-  }
-  function off(name){
-  	//key/value
-  	delete events[name]
-  }
+    this.eventPool[name].forEach(function(fn){
+      fn()
+    })
+  };
+  return F;
+}());
 
-  return {
-    on: on,
-    fire: fire,
-    off:off //取消订阅
-  }
-})();
+var e = new EventCenter();
+e.on('hello',function () {
+  console.log('hello')
+}); 
+===> 存 {'hello': [fn]}
+e.trigger('hello'); // hello
+===> 取后执行
+
+ 
+7. 观察者模式 observer
+
+$('input').change(function(){
+   $('input').observers.forEach(function(observer) {
+     observer();
+   })
+})
+$('input').observers = []
+$('input').subscribe = function(fn) {
+    this.observers.push(fn);
+};
+
+// API使用方式
+$('.input').subscribe(fn) ==> 记录日志
+$('input').subscribe(fn1) ==> 发起请求
+$('input').subscribe(fn2) ==> 改变UI
+
 
 
 

@@ -1,0 +1,82 @@
+<html><head>
+	<title>tab组件学习</title>
+	<style>
+		*{
+			box-sizing:border-box;
+		}
+		#root{
+			margin:auto;
+			width:600px;
+			border-radius:20px;
+			padding:20px;
+		}
+		.tab-header {
+            border-bottom: 1px solid #ccc;
+        }
+        .tab-header li{
+			display: inline-block;
+			padding:5px 20px;
+        }
+        .tab-header li.active{
+        	color:red;
+        }
+        .tab-body li.active{
+			display: block
+        }
+         .tab-body li{
+			display: none
+        }    
+	</style>
+</head>
+<body>
+	<div id="root">
+		<ul class='tab-header'>
+			<li data-index='0' class='active'>
+				tab1
+			</li>
+			<li data-index='1'>tab2</li>
+			<li data-index='2'>tab3</li>
+		</ul>
+		<ul class='tab-body'>
+			<li data-index='0' class='active'>
+				tab1内容
+			</li>
+			<li data-index='1' hello='world'>tab2内容</li>
+			<li data-index='2'>tab3内容</li>
+		</ul>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var Tab = function(headerDom,bodyDom) {
+			this.headerDom = headerDom.find('li')
+			this.bodyDom = bodyDom.find('li')
+			this.addEvent() //方法调用
+		}
+		Tab.prototype.addEvent = function() {
+			var that = this
+			this.headerDom.on('click',function() {
+					var index = $(this).data('index')
+					// 当前的tab高亮,内容区进行切换
+					that.highLight(index)
+					that.bodySwitch(index)
+				})
+		}
+		Tab.prototype.highLight = function(index) {
+			var headerLi = this.headerDom
+			headerLi.removeClass('active')
+			headerLi.eq(index).addClass('active')
+		}
+		Tab.prototype.bodySwitch = function(index) {
+			var bodyLi = this.bodyDom
+			bodyLi.removeClass('active')
+			bodyLi.eq(index).addClass('active')
+		}
+		new Tab($('.tab-header'),$('.tab-body'))
+
+
+
+
+		
+	</script>
+</body>
+</html>

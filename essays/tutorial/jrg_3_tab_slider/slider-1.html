@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>slider</title>
+	<style type="text/css">
+	 	ul,li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+		.image-item img{
+			display: inline-block;
+			width: 300px;
+            height: 200px;
+		}
+		.image-item{
+			float:left;
+		}
+		.img-wrapper{
+			width: 300px;
+            height: 200px;
+			overflow:hidden;
+			position: relative;
+		}
+		.img-ct{
+			position: relative;
+			width:1200px
+		}
+		.arr{
+			background: gray;
+			padding:5px;
+			color: #fff;
+			margin-top: -10px;
+			cursor:pointer;
+		}
+		.left{
+			position: absolute;
+			left:0;
+			top:50%;
+		}
+		.right{
+			position: absolute;
+			right:0;
+			top:50%;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<div class='img-wrapper'>
+	 	<ul class="img-ct">
+      	</ul>
+      	<div class='left arr'>左箭头</div>
+      	<div class="right arr">右箭头</div>
+	</div>
+</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var images = [1,2,3,4].map(function(ele,index) {
+		return '<li class="image-item">\
+				<img src="http://cdn.jirengu.com/book.jirengu.com/img/'+
+				ele+'.jpg"/>'+
+				'</li>'
+	}).join('')
+	$('.img-ct').html(images)
+</script>
+<script type="text/javascript">
+
+	//事件
+	// 左右箭头 click
+	var Slider =function(container) {
+		this.arrowLeft = container.find('.left')
+		this.arrowRight = container.find('.right')
+		this.imgWrapper = container.find('.img-ct')
+		this.addEvent()
+		//当前的序数号
+		this.currentIndex = 0
+		this.imgLength = container.find('img').length-1
+	}
+	Slider.prototype.addEvent = function() {
+		var that = this
+		this.arrowRight.on('click',function() {
+			if(that.animating){
+				return
+			}
+			var index = that.calculateIndex(true)
+			that.slider(index)
+		})
+		this.arrowLeft.on('click',function() {
+			if(that.animating){
+				return
+			}
+			var index = that.calculateIndex(false)
+			that.slider(index)
+		})
+	}
+	Slider.prototype.calculateIndex=function(isRight) {
+		if(isRight){
+			this.currentIndex++
+		}else{
+			this.currentIndex--
+		}
+		if(this.currentIndex==-1){
+			this.currentIndex = this.imgLength
+		}
+		if(this.currentIndex>this.imgLength){
+			this.currentIndex=0
+		}
+		return this.currentIndex
+	}
+	Slider.prototype.slider = function(index) {
+		var that = this
+		this.animating = true
+		this.imgWrapper.animate({
+               'left':index * (-300) +'px'
+         }, function() {
+         	that.animating = false
+		})
+ 	}
+ 	new Slider($('.img-wrapper'))
+</script>
+</body>
+</html>

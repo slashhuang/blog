@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lazyload图片懒加载</title>
+	<style>
+    ul,li{
+      list-style:none;
+    }
+    .container{
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .container:after{
+    	content: '';
+    	display: block;
+    	clear: both;
+    }
+    .container li{
+      float: left;
+      margin: 10px 10px;
+    }
+    .container li img{
+      width: 380px;
+      height: 380px;
+    }
+    p{
+      float: left;
+    }
+  </style>
+</head>
+<body>
+	<ul class="container"></ul>
+	<script type="text/javascript">
+		//创建[0,1,2...15];
+		var range_16=Array.from(Array(16).keys());
+		var imgPlaceholder = "http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg";
+		var imgListDOM = range_16.map(function (value,index) {
+			return ['<li>',
+					'<img data-src="http://cdn.jirengu.com/book.jirengu.com/img/'+(value+1)+'.jpg"',
+					' src="'+imgPlaceholder+'"/>',
+					'</li>'
+					].join('');
+		});
+		var containerDom = document.querySelectorAll('.container')[0];
+		containerDom.innerHTML= imgListDOM.join('');
+		//主逻辑
+		var LazyLoad = function(targetDom){
+			this.node = targetDom;
+			//首屏检查
+			this.check();
+			//添加滚动监听
+			this.addScrollEvent();
+		};
+		LazyLoad.prototype.check = function(){
+			var windowHeight = screen.availHeight;
+			var scrollTop = document.body.scrollTop;
+			var offsetTop = this.node.offsetTop;
+      		var nodeHeight = this.node.offsetHeight;
+			if(windowHeight + scrollTop > offsetTop && scrollTop < offsetTop + nodeHeight){	
+				this.triggerLoad();
+			}
+		}
+		//添加滚动监听
+		LazyLoad.prototype.addScrollEvent = function(){
+			var that = this;
+			//最核心的逻辑
+			window.addEventListener('scroll', function(e) {
+		  		that.check();
+			});
+		}
+		//触发加载
+		LazyLoad.prototype.triggerLoad= function(){
+			var imgNode = this.node.querySelectorAll('img')[0];
+			var imgUrl = imgNode.getAttribute('data-src');
+			imgNode.setAttribute('src', imgUrl);
+		};
+		//初始化
+		var init =function(container){
+			[].slice.call(container.children).forEach(function(childDOM){
+				new LazyLoad(childDOM);	
+			})
+		}
+		init(containerDom);
+	</script>
+</body>
+</html>
