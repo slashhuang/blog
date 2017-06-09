@@ -1,13 +1,13 @@
 {
-  "name": "china-city-weather-1",
-  "version": "1.0.2",
+  "name": "slashhuang-weather",
+  "version": "1.0.4",
   "description": "a weather cli ",
   "bin": {
     "weather": "bin.js"
   },
   "main": "index.js",
   "scripts": {
-    "test": "node ./bin"
+    "test": "node ./index"
   },
   "keywords": [
     "weather",

@@ -1,0 +1,23 @@
+{
+  "name": "jrg_5",
+  "version": "1.0.0",
+  "description": "a package demonstration",
+  "bin":"./lib/bin.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo I love to be a programmer",
+     "a": "echo I am great"
+  },
+  "keywords": [
+    "package",
+    "node.js"
+  ],
+  "author": "slashhuang",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.4" 
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

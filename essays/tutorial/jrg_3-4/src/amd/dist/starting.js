@@ -1,1 +1,0 @@
-define(["./test/inc"],function(e){return console.log(e.getRes()),e.add1(),console.log(e.getRes()),e.add1(),console.log(e.getRes()),{inc:"inc"}});

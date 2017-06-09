@@ -4,12 +4,10 @@
  */
 
 var apiName = "http://api.jirengu.com/weather.php";
-var http = require('http');
-
+var http = require('http'); //node内建模块
 http.get(apiName, (res) => {
   const statusCode = res.statusCode;
   const contentType = res.headers['content-type'];
-
   let error;
   if (statusCode !== 200) {
     error = new Error(`Request Failed.\n` +
@@ -32,28 +30,3 @@ http.get(apiName, (res) => {
 }).on('error', (e) => {
   console.log(`Got error: ${e.message}`);
 });
-
-
-
-//  var get = require('http').get;
-//  var weatherApi = "http://api.jirengu.com/weather.php";
-//  // var options = {
-// 	//   hostname: 'api.jirengu.com',
-// 	//   port: 80,
-// 	//   path: '/weather.php',
-// 	//   method: 'GET'
-//  // };
-//  console.log('天气信息获取中---------\n');
-//  var req = get(weatherApi,function(res) {
-//  	console.log('hello')
-//  	res.on('data', (chunk) => {
-// 	    console.log(`BODY: ${chunk}`);
-// 	 });
-//   	res.on('end', () => {
-//     	console.log('No more data in response.');
-//   	});
-//  })
-//  .on('error', (e) => {
-//   console.log(`problem with request: ${e.message}`);
-// });	
-

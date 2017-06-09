@@ -1,0 +1,15 @@
+{
+  "name": "jrg_3-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": " rimraf  src/amd/dist && r.js -o build.js"
+  },
+  "author": "slashhuang",
+  "license": "ISC",
+  "devDependencies": {
+    "requirejs": "^2.3.2",
+    "rimraf": "^2.6.1"
+  }
+}

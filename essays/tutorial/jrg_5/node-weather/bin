@@ -1,4 +1,0 @@
-#!/usr/bin/env  node 
-
-require('./index');
-console.log('我的逻辑在index')
