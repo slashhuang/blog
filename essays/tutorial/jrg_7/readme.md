@@ -7,6 +7,8 @@
 
 HTML5是应用超文本标记语言（HTML）第五次重大修改产生的规范。
 
+[mdn HTML5](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5)
+
 特性:
 Semantic :
 语义化网页意义和结构
