@@ -89,7 +89,7 @@ origin : 域名 + 端口
 
 
 3.4 localStorage提供的api
-
+	
 localStorage.colorSetting = '#a4509b';
 localStorage['colorSetting'] = '#a4509b';
 localStorage.setItem('colorSetting', '#a4509b');
