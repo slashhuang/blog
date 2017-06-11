@@ -9,24 +9,45 @@ HTML5是应用超文本标记语言（HTML）第五次重大修改产生的规�
 
 [mdn HTML5](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5)
 
+1、 语义化 ===> SEO(search engine optimization搜索引擎优化)
+<html>
+	<head>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+		</ul>
+		<dl>
+			<dt></dt>
+			<dd></dd>
+		</dl>
+		<header></header>
+		<section></section>
+		<footer></footer>
+	</body>
+</html>
 特性:
 Semantic :
 语义化网页意义和结构
 SEO
 
-本地存储特性:  
+本地存储特性: ===> localstorage  
 APP cache 、IndexDB
 localStorage
 
-MULTIMEDIA:
+MULTIMEDIA: 多媒体
 audio video等
 
 三维、图形及特效特性:
 svg canvas webGL
 
+iconfont
+
 浏览器层面:
 
 webRTC ==> web realtime实时 communication
+
+webSockets ==> socket.io ， http协议不同的
 
 Server-Sent Event和WebSockets
 
