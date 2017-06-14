@@ -2,4 +2,6 @@
 
 [windows 10官方镜像下载](https://www.microsoft.com/en-us/software-download/windows10ISO)
 
+[how to name html file](https://ed.fnal.gov/lincon/tech_web_naming.shtml)
+
 [netflix async show](https://www.youtube.com/watch?v=XRYN2xt11Ek)
