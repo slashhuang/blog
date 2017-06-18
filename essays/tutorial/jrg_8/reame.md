@@ -23,8 +23,17 @@ grid 容器
 	
 
 -------------------------------------------------------
+@media  (指令)
 
 
+@media screen and (min-width: 700px)
+			  and (max-width: 1000px)
+			  and (其他条件) {
+	// css
+}
+if ( a ===1 && b ===2) {
+	// 拿这个css
+}
 
 
 [题目1](./media.html)
