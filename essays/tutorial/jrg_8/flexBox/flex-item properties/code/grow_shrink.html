@@ -7,29 +7,39 @@
 		body {
 			height: 100%;
 		}
-
 		ul {
 			display: flex;
 			border: 1px solid red;
 			padding: 0;
 			list-style: none;
 			background-color: #e8e8e9;
+			width: 500px;
 		}
-
 		li {
-			flex-grow: 1;
+			flex-basis: 300px;
 		  	background-color: #8cacea;
 		 	margin: 8px;
 		 	min-height: 100px;
 		 	color: #fff;
 		 	padding: 4px;
 		}
-				
+		.a {
+			flex-grow: 1;
+			flex-shrink: 2;
+			background: red;
+		}
+		.b {
+			flex-grow: 2;
+			flex-shrink: 1;
+			background: orange;
+
+		}		
 	</style>
 </head>
 <body>
 <ul>
-	<li>I am a simple list</li>		  	 	 			
+	<li class='a'></li>		
+	<li class='b'></li>		  	 	 	
 </ul>
 </body>
 </html>
