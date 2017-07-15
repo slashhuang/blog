@@ -14,13 +14,14 @@
 监控架构模型
 |- B(浏览器) ----> S(服务器) 
 |- [webview 架构下]
-    ---> 加载view skeleton(timeout) 
+    ---> native报警(timeout),加载view skeleton
+|- [传统h5/pc]
+    ---> 用户反馈
         ---> 监控平台域名traceRoute/ping等返回网络节点数据
-        ---> 监控平台可视化平台
-|- [传统BS架构]
-    ---> 加载view skeleton(timeout) 
-        ---> 监控平台域名traceRoute/ping等返回网络节点数据
-        ---> 监控平台可视化平台
+        --> data --> 监控可视化平台
+|- 用户反馈入口
+    ---> 检测(域名列表),返回结果
+    --> data --> 监控可视化平台
 
 ## 客户端监控(性能)
 输入参数
