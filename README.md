@@ -40,6 +40,8 @@
 
 [3.Node.js知识体系概述下载链接](./ppt-share/node-share.key?raw=true)
 
+[4.rxjs深入浅出](./ppt-share/rxjs.key?raw=true)
+
 ## 技术教程列表
 
 [scss全解析](./essays/css/scss)
