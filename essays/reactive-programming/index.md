@@ -1,5 +1,5 @@
 ## reactive programming【介绍其一】
-
+https://github.com/tc39/proposal-observable
 reactive programming算是继functional programming之后比较潮的编程理念了。
 
 reactive programming一般具备以下几个要素:
