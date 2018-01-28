@@ -41,7 +41,7 @@ sequence in time
 
 - 动画演示
 
-2. declarative transformation, opeate on events
+2. declarative transformation, operate on events
 
 - example: map operator
 
@@ -52,6 +52,9 @@ sequence in time
 
 - example: take operator
 
+
+4. cancel 
+promise.cancel ==> obs$.cancel
 
 
 

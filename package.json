@@ -1,0 +1,22 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "a blog ",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slashhuang/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "slashhuang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slashhuang/blog/issues"
+  },
+  "homepage": "https://github.com/slashhuang/blog#readme"
+}
