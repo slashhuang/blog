@@ -78,8 +78,7 @@
 	var singleton = ()=>{
 		var instance;
 		var createInstance = ()=>{
-			this.a = 1;
-			this.b = 2;
+			return {a: 1, b: 2}
 		}
 		return {
 			getInstance:()=>{
@@ -92,7 +91,7 @@
 	}
 	var test = singleton();
 	test.getInstance() == test.getInstance() //true
-
+	console.log(test.getInstance()) // {a: 1, b; 2}
 ```
 
 4. decorator混合模式
